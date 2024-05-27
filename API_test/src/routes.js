@@ -1,44 +1,57 @@
-const {
-  getLoginHandler,
-  GetTaskHandler,
-  editTaskByIdHandler,
-  deleteTaskByIdHandler,
-  postTaskHandler,
-  getCompletedTaskHandler
-} = require("../src/handler");
+const TaskHandler = require("../src/handler/taskHandler");
+const UserHandler = require("../src/handler/userHandler");
 
 const routes = [
+  //USER HANDLER
   {
-    path: "/login",
-    method: "POST",
-    handler: getLoginHandler,
-  },
-  {
-    path: "/task",
     method: "GET",
-    handler: GetTaskHandler,
-  },
-  {
-    path: "/task/completed",
-    method: "GET",
-    handler: getCompletedTaskHandler,
-  },
-  {
-    path: "/task",
-    method: "POST",
-    handler: postTaskHandler,
+    path: "/users",
+    handler: UserHandler.getAllUsers,
   },
 
+  // TASK HANDLER
   {
-    path: "/task/{id}",
-    method: "PUT",
-    handler: editTaskByIdHandler,
+    method: "GET",
+    path: "/task/user/{username}",
+    handler: TaskHandler.getAllTaskByUsername,
   },
   {
-    path: "/task/{id}",
-    method: "DELETE",
-    handler: deleteTaskByIdHandler,
+    method: "GET",
+    path: "/task",
+    handler: TaskHandler.getAllTasks,
   },
+  {
+    method: "GET",
+    path: "/task/{id}",
+    handler: TaskHandler.getTaskById,
+  },
+
+  // {
+  //   path: "/task",
+  //   method: "GET",
+  //   handler: GetTaskHandler,
+  // },
+  // {
+  //   path: "/task/completed",
+  //   method: "GET",
+  //   handler: getCompletedTaskHandler,
+  // },
+  // {
+  //   path: "/task",
+  //   method: "POST",
+  //   handler: postTaskHandler,
+  // },
+
+  // {
+  //   path: "/task/{id}",
+  //   method: "PUT",
+  //   handler: editTaskByIdHandler,
+  // },
+  // {
+  //   path: "/task/{id}",
+  //   method: "DELETE",
+  //   handler: deleteTaskByIdHandler,
+  // },
 ];
 
 module.exports = routes;
