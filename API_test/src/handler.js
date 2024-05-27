@@ -7,6 +7,24 @@ const exampledata = {
   password: "johndoe123",
 };
 
+// LIST APIs
+// 1. Login Handler
+// 2. Registration Handler
+// 3. Get Username Handler
+// 4. Get Find Major Handler
+// 5. Get Recommended Major Handler
+// 6. Get All Major Handler
+// 7. Get Major Data Handler
+// 8. Get Assesment Result Handler
+// 9. Post Assesment Result Handler
+// 10. Get Task Handler
+// 11. Get Completed Task Handler
+// 12. Post Task Handler
+// 13. Edit Task Handler
+// 14. Delete Task Handler
+// 15. Get Profile Handler
+// 16. Edit Profile Handler
+
 // Login Handler
 const getLoginHandler = (request, h) => {
   const { username, password } = request.payload;
