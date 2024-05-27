@@ -77,6 +77,57 @@ const GetTaskHandler = (request, h) => {
   return response;
 };
 
+// Get Completed Task Handler
+const getCompletedTaskHandler = (request, h) => {
+  const completedTasks = tasks.filter((task) => task.completed);
+  const response = h.response({
+    status: "success",
+    data: completedTasks,
+  });
+  response.code(200);
+  return response;
+};
+
+// Post Task Item Handler
+const postTaskHandler = (request, h) => {
+  const { 
+    date, 
+    title, 
+    startTime, 
+    endTime, 
+    duration, 
+    focusTime, 
+    breakTime, 
+    priority, 
+    repeat 
+  } = request.payload;
+
+  const newTask = {
+    id: tasks.length + 1,
+    date,
+    title,
+    startTime,
+    endTime,
+    duration,
+    focusTime,
+    breakTime,
+    priority,
+    repeat,
+    completed: false,
+  };
+
+  tasks.push(newTask);
+
+  const response = h.response({
+    status: "success",
+    message: "Task created successfully",
+    data: newTask,
+  });
+  response.code(201);
+  return response;
+};
+
+
 // Update Task Item Handler
 const editTaskByIdHandler = (request, h) => {
   const { id } = request.params;
@@ -150,4 +201,6 @@ module.exports = {
   GetTaskHandler,
   editTaskByIdHandler,
   deleteTaskByIdHandler,
+  postTaskHandler,
+  getCompletedTaskHandler,
 };

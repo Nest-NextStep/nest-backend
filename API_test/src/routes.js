@@ -3,6 +3,8 @@ const {
   GetTaskHandler,
   editTaskByIdHandler,
   deleteTaskByIdHandler,
+  postTaskHandler,
+  getCompletedTaskHandler
 } = require("../src/handler");
 
 const routes = [
@@ -16,6 +18,17 @@ const routes = [
     method: "GET",
     handler: GetTaskHandler,
   },
+  {
+    path: "/task/completed",
+    method: "GET",
+    handler: getCompletedTaskHandler,
+  },
+  {
+    path: "/task",
+    method: "POST",
+    handler: postTaskHandler,
+  },
+
   {
     path: "/task/{id}",
     method: "PUT",
