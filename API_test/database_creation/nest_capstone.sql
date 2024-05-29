@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 27, 2024 at 07:20 PM
+-- Generation Time: May 29, 2024 at 12:12 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -33,6 +33,27 @@ CREATE TABLE `alumni_opinions` (
   `opinions_content` varchar(300) NOT NULL,
   `major_major_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `alumni_opinions`
+--
+
+INSERT INTO `alumni_opinions` (`opinion_id`, `opinion_name`, `opinions_content`, `major_major_id`) VALUES
+(1, 'Alice Johnson', 'AI will significantly change the landscape of technology in the next decade.', 1),
+(2, 'Bob Smith', 'As technology advances, cybersecurity threats will become more complex.', 1),
+(3, 'Carol Williams', 'Ensuring data privacy is critical in the age of big data.', 1),
+(4, 'David Brown', 'Legal reforms are necessary to adapt to the changing social landscape.', 2),
+(5, 'Eva Taylor', 'Protecting human rights should be at the forefront of legal discussions.', 2),
+(6, 'Frank Moore', 'Corporate law needs to address modern business challenges.', 2),
+(7, 'Grace Anderson', 'Raising awareness about mental health is essential for societal well-being.', 3),
+(8, 'Henry Thomas', 'Social media has a profound impact on mental health.', 3),
+(9, 'Ivy Jackson', 'New therapeutic techniques can improve patient outcomes.', 3),
+(10, 'Jack White', 'Sustainable construction practices are vital for environmental conservation.', 4),
+(11, 'Karen Harris', 'Effective urban planning can solve many modern city problems.', 4),
+(12, 'Liam Martin', 'Infrastructure development is key to economic growth.', 4),
+(13, 'Mia Lee', 'Innovations in IT can lead to more efficient business processes.', 5),
+(14, 'Noah Young', 'Effective data management is crucial for business success.', 5),
+(15, 'Olivia King', 'Integrating different IT systems can improve overall efficiency.', 5);
 
 -- --------------------------------------------------------
 
@@ -70,6 +91,27 @@ CREATE TABLE `potential_jobs` (
   `jobs_description` varchar(300) NOT NULL,
   `major_major_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `potential_jobs`
+--
+
+INSERT INTO `potential_jobs` (`jobs_id`, `jobs_name`, `jobs_salary`, `jobs_description`, `major_major_id`) VALUES
+(1, 'Software Developer', '70000', 'Develops and maintains software applications.', 1),
+(2, 'Network Administrator', '65000', 'Manages and supports computer networks.', 1),
+(3, 'Data Analyst', '72000', 'Analyzes and interprets complex data sets.', 1),
+(4, 'Legal Advisor', '60000', 'Provides legal advice and support.', 2),
+(5, 'Corporate Lawyer', '90000', 'Handles corporate legal matters.', 2),
+(6, 'Paralegal', '45000', 'Assists lawyers in legal research and documentation.', 2),
+(7, 'Clinical Psychologist', '65000', 'Provides psychological therapy and assessments.', 3),
+(8, 'School Counselor', '55000', 'Offers counseling and support to students.', 3),
+(9, 'Research Psychologist', '70000', 'Conducts psychological research studies.', 3),
+(10, 'Civil Engineer', '75000', 'Designs and oversees construction projects.', 4),
+(11, 'Project Manager', '80000', 'Manages construction project timelines and budgets.', 4),
+(12, 'Structural Engineer', '77000', 'Ensures the structural integrity of buildings and bridges.', 4),
+(13, 'IT Consultant', '68000', 'Advises on IT systems and solutions.', 5),
+(14, 'System Analyst', '70000', 'Analyzes and designs information systems.', 5),
+(15, 'Database Administrator', '69000', 'Manages and maintains database systems.', 5);
 
 -- --------------------------------------------------------
 
@@ -111,12 +153,33 @@ INSERT INTO `task` (`task_id`, `task_name`, `task_date`, `task_startTime`, `task
 
 CREATE TABLE `university` (
   `university_id` int(11) NOT NULL,
-  `university_name` varchar(30) NOT NULL,
+  `university_name` varchar(100) NOT NULL,
   `university_location` varchar(30) NOT NULL,
   `university_acreditation` char(1) NOT NULL,
   `university_link` varchar(500) NOT NULL,
   `major_major_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `university`
+--
+
+INSERT INTO `university` (`university_id`, `university_name`, `university_location`, `university_acreditation`, `university_link`, `major_major_id`) VALUES
+(1, 'Institut Teknologi Sepuluh Nopember', 'Surabaya, Jawa Timur', 'A', 'https://www.its.ac.id/informatika/id/akademik/program-studi/', 1),
+(2, 'Universitas Indonesia', 'Depok, Jawa Barat', 'A', 'https://www.ui.ac.id/program-studi/sarjana-ilmu-komputer/', 1),
+(3, 'Universitas Telkom Surabaya', 'Surabaya, Jawa Timur', 'A', 'https://bif-sby.telkomuniversity.ac.id/', 1),
+(4, 'Universitas Airlangga', 'Surabaya, Jawa Timur', 'A', 'https://fh.unair.ac.id/en/home/', 2),
+(5, 'Universitas Indonesia', 'Depok, Jawa Barat', 'A', 'https://law.ui.ac.id/', 2),
+(6, 'Universitas Gadjah Mada', 'Yogyakarta, Yogyakarta', 'A', 'https://law.ugm.ac.id/', 2),
+(7, 'Universitas Indonesia', 'Depok, Jawa Barat', 'A', 'https://psikologi.ui.ac.id/', 3),
+(8, 'Universitas Airlangga', 'Surabaya, Jawa Timur', 'A', 'https://psikologi.unair.ac.id/en_US/', 3),
+(9, 'Universitas Gadjah Mada', 'Yogyakarta, Yogyakarta', 'A', 'https://ugm.ac.id/id/fakultas/fakultas-psikologi/', 3),
+(10, 'Universitas Sebelas Maret', 'Surakarta, Jawa Tengah', 'A', 'https://sipil.ft.uns.ac.id/', 4),
+(11, 'Universitas Udayana', 'Denpasar, Bali', 'A', 'https://sipil.unud.ac.id/', 4),
+(12, 'Universitas Gadjah Mada', 'Yogyakarta, Yogyakarta', 'A', 'https://tsipil.ugm.ac.id/en/home-eng/', 4),
+(13, 'Institut Teknologi Sepuluh Nopember', 'Surabaya, Jawa Timur', 'A', 'https://www.its.ac.id/si/en/home/', 5),
+(14, 'Universitas Indonesia', 'Depok, Jawa Barat', 'A', 'https://www.ui.ac.id/program-studi/sarjana-sistem-informasi/', 5),
+(15, 'Universitas Telkom Surabaya', 'Surabaya, Jawa Timur', 'A', 'https://bis-sby.telkomuniversity.ac.id/', 5);
 
 -- --------------------------------------------------------
 
@@ -223,7 +286,7 @@ ALTER TABLE `user_major`
 -- AUTO_INCREMENT for table `alumni_opinions`
 --
 ALTER TABLE `alumni_opinions`
-  MODIFY `opinion_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `opinion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `major`
@@ -235,7 +298,7 @@ ALTER TABLE `major`
 -- AUTO_INCREMENT for table `potential_jobs`
 --
 ALTER TABLE `potential_jobs`
-  MODIFY `jobs_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `jobs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `task`
@@ -247,7 +310,7 @@ ALTER TABLE `task`
 -- AUTO_INCREMENT for table `university`
 --
 ALTER TABLE `university`
-  MODIFY `university_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `university_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `user_data`
