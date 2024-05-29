@@ -4,8 +4,8 @@ const { Sequelize } = require("sequelize");
 require("dotenv").config();
 
 const sequelize = new Sequelize("nest_capstone", "root", null, {
-  host: process.env.DB_HOST,
-  port: 3310,  // Specify the port
+  host: "localhost",
+  port: 3306 || 3310, // Specify the port
   dialect: "mysql",
 });
 
