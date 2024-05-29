@@ -4,7 +4,7 @@ const { DataTypes } = require("sequelize");
 const { sequelize } = require("../utils/database");
 
 const Task = sequelize.define(
-  "task",
+  "Task",
   {
     task_id: {
       type: DataTypes.INTEGER,
@@ -16,7 +16,7 @@ const Task = sequelize.define(
       allowNull: false,
     },
     task_date: {
-      type: DataTypes.DATEONLY, // Use DATEONLY for date without time
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
     task_startTime: {
@@ -40,11 +40,11 @@ const Task = sequelize.define(
       allowNull: false,
     },
     task_priority: {
-      type: DataTypes.STRING(7), // Specify length for VARCHAR
+      type: DataTypes.STRING(7),
       allowNull: false,
     },
     task_repeat: {
-      type: DataTypes.BOOLEAN, // Use BOOLEAN for tinyint(1)
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
     task_user_user_id: {
@@ -58,9 +58,9 @@ const Task = sequelize.define(
   },
   {
     timestamps: true,
-    underscored: true, // Use underscored naming convention for foreign keys
+    underscored: true, // This will map camelCase fields to snake_case columns
     tableName: "task", // Explicitly specify the table name
   }
 );
 
-module.exports = Task;
+module.exports = { Task };

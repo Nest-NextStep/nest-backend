@@ -25,7 +25,21 @@ const routes = [
     path: "/task/{id}",
     handler: TaskHandler.getTaskById,
   },
-
+  {
+    method: "POST",
+    path: "/task",
+    handler: TaskHandler.postTask,
+  },
+  {
+    method: "PUT",
+    path: "/task/{id}",
+    handler: TaskHandler.editTask,
+  },
+  {
+    method: "DELETE",
+    path: "/task/{id}",
+    handler: TaskHandler.deleteTask,
+  },
   // {
   //   path: "/task",
   //   method: "GET",
