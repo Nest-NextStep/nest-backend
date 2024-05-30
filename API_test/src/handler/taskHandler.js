@@ -1,5 +1,6 @@
 const { sequelize } = require("../utils/database");
 const { Task } = require("../model/taskModel");
+const TaskQuery = require("../queries/taskQueries");
 
 //Get All Task Available
 const getAllTasks = async (request, h) => {
@@ -16,60 +17,14 @@ const getAllTasks = async (request, h) => {
 const getAllTaskByUsername = async (request, h) => {
   try {
     let { username } = request.params;
-    let query = `
-      SELECT 
-        t.task_name,
-        t.task_date,
-        t.task_startTime,
-        t.task_endTime,
-        t.task_duration,
-        t.task_focusTime,
-        t.task_breakTime,
-        t.task_priority,
-        t.task_repeat,
-        t.isCompleted
-      FROM 
-        task t 
-      JOIN 
-        user_data u ON t.user_user_id = u.user_id
-      WHERE 
-        u.username = ? AND
-        t.isCompleted = FALSE
-    `;
-
-    // Count of completed tasks
-    const queryCompletedCount = `
-      SELECT 
-        COUNT(*) AS completedCount
-      FROM 
-        task t 
-      JOIN 
-        user_data u ON t.user_user_id = u.user_id
-      WHERE 
-        u.username = ? AND 
-        t.isCompleted = true
-    `;
-
-    // Total tasks count
-    const queryTotalCount = `
-      SELECT 
-        COUNT(*) AS totalCount
-      FROM 
-        task t 
-      JOIN 
-        user_data u ON t.user_user_id = u.user_id
-      WHERE 
-        u.username = ?
-    `;
-
     const replacements = [username];
 
     // Execute all queries concurrently
     const [tasksResult, [completedCountResult], [totalCountResult]] =
       await Promise.all([
-        sequelize.query(query, { replacements }),
-        sequelize.query(queryCompletedCount, { replacements }),
-        sequelize.query(queryTotalCount, { replacements }),
+        sequelize.query(TaskQuery.uncompletedTaskList, { replacements }),
+        sequelize.query(TaskQuery.completedTaskCount, { replacements }),
+        sequelize.query(TaskQuery.totalTaskCount, { replacements }),
       ]);
 
     // Extract data from results
@@ -95,33 +50,17 @@ const getAllTaskByUsername = async (request, h) => {
 const getTaskById = async (request, h) => {
   try {
     let { id } = request.params;
-
     id_parsed = parseInt(id);
-
-    let query = `
-      SELECT 
-        t.task_name,
-        t.task_date,
-        t.task_startTime,
-        t.task_endTime,
-        t.task_duration,
-        t.task_focusTime,
-        t.task_breakTime,
-        t.task_priority,
-        t.task_repeat
-      FROM 
-        task t 
-    `;
 
     const replacements = [];
 
     // Check if id is provided and add WHERE clause
     if (id) {
-      query += " WHERE t.task_id = ?";
+      TaskQuery.taskDetail += " WHERE t.task_id = ?";
       replacements.push(id_parsed);
     }
 
-    const [results, metadata] = await sequelize.query(query, {
+    const [results, metadata] = await sequelize.query(TaskQuery.taskDetail, {
       replacements,
     });
 
@@ -151,23 +90,6 @@ const postTask = async (request, h) => {
       isCompleted,
     } = request.payload;
 
-    // Create a new task using the Task model
-    const query = `
-      INSERT INTO task (
-        task_name,
-        task_date,
-        task_startTime,
-        task_endTime,
-        task_duration,
-        task_focusTime,
-        task_breakTime,
-        task_priority,
-        task_repeat,
-        user_user_id,
-        isCompleted
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `;
-
     const replacements = [
       task_name,
       task_date,
@@ -182,7 +104,7 @@ const postTask = async (request, h) => {
       false, // Newly created tasks are not completed by default
     ];
 
-    await sequelize.query(query, { replacements });
+    await sequelize.query(TaskQuery.postTask, { replacements });
 
     return h
       .response({ status: "success", message: "Task created successfully" })
@@ -210,24 +132,6 @@ const editTask = async (request, h) => {
       isCompleted,
     } = request.payload;
 
-    // Update the task in the database
-    const query = `
-      UPDATE task
-      SET
-        task_name = ?,
-        task_date = ?,
-        task_startTime = ?,
-        task_endTime = ?,
-        task_duration = ?,
-        task_focusTime = ?,
-        task_breakTime = ?,
-        task_priority = ?,
-        task_repeat = ?,
-        isCompleted = ?
-      WHERE
-        task_id = ?
-    `;
-
     const replacements = [
       task_name,
       task_date,
@@ -242,7 +146,9 @@ const editTask = async (request, h) => {
       id,
     ];
 
-    const [result] = await sequelize.query(query, { replacements });
+    const [result] = await sequelize.query(TaskQuery.updateTask, {
+      replacements,
+    });
 
     // Check if any rows were affected (task was found and updated)
     if (result.affectedRows === 0) {
@@ -265,15 +171,11 @@ const deleteTask = async (request, h) => {
   try {
     const { id } = request.params;
 
-    // Delete the task from the database
-    const query = `
-      DELETE FROM task
-      WHERE task_id = ?
-    `;
-
     const replacements = [id];
 
-    const [result] = await sequelize.query(query, { replacements });
+    const [result] = await sequelize.query(TaskQuery.deleteTask, {
+      replacements,
+    });
 
     // Check if any rows were affected (task was found and deleted)
     if (result.affectedRows === 0) {
@@ -295,32 +197,12 @@ const deleteTask = async (request, h) => {
 const getAllCompletedTask = async (request, h) => {
   try {
     let { username } = request.params;
-    let query = `
-      SELECT 
-        t.task_name,
-        t.task_date,
-        t.task_startTime,
-        t.task_endTime,
-        t.task_duration,
-        t.task_focusTime,
-        t.task_breakTime,
-        t.task_priority,
-        t.task_repeat,
-        t.isCompleted
-      FROM 
-        task t 
-      JOIN 
-        user_data u ON t.user_user_id = u.user_id
-      WHERE 
-        u.username = ? AND
-        t.isCompleted = TRUE
-    `;
 
     const replacements = [username];
 
     // Execute all queries concurrently
     const [tasksResult] = await Promise.all([
-      sequelize.query(query, { replacements }),
+      sequelize.query(TaskQuery.completedTaskList, { replacements }),
     ]);
 
     // Extract data from results

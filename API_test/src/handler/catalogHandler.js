@@ -1,6 +1,6 @@
 // 4. Get Find Major Handler
 const { sequelize } = require("../utils/database");
-const Query = require("../queries/catalogQueries");
+const CatalogQuery = require("../queries/catalogQueries");
 
 const getAllMajor = async (request, h) => {
   try {
@@ -9,7 +9,7 @@ const getAllMajor = async (request, h) => {
 
     const [majorAllResult, majorRecommendedData] = await Promise.all([
       sequelize.query("SELECT * FROM major"),
-      sequelize.query(Query.getAllMajorQuery, { replacements }),
+      sequelize.query(CatalogQuery.getAllMajorQuery, { replacements }),
     ]);
 
     const majorsAll = majorAllResult[0];
@@ -39,10 +39,10 @@ const getMajorDetailByName = async (request, h) => {
       majorJobDetail,
       majorOpinionDetail,
     ] = await Promise.all([
-      sequelize.query(Query.query_majorDetail, { replacements }),
-      sequelize.query(Query.query_uni, { replacements }),
-      sequelize.query(Query.query_job, { replacements }),
-      sequelize.query(Query.query_opinion, { replacements }),
+      sequelize.query(CatalogQuery.query_majorDetail, { replacements }),
+      sequelize.query(CatalogQuery.query_uni, { replacements }),
+      sequelize.query(CatalogQuery.query_job, { replacements }),
+      sequelize.query(CatalogQuery.query_opinion, { replacements }),
     ]);
 
     const major = majorDetail[0];

@@ -18,12 +18,6 @@ const routes = [
     path: "/task/user/{username}",
     handler: TaskHandler.getAllTaskByUsername,
   },
-  // GET ALL TASK (NOT NECESSARY FOR THE FRONT END)
-  {
-    method: "GET",
-    path: "/task",
-    handler: TaskHandler.getAllTasks,
-  },
   // GET TASK BASED ON ID
   {
     method: "GET",
