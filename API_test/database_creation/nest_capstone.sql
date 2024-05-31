@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 29, 2024 at 12:12 PM
+-- Generation Time: May 31, 2024 at 05:28 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -131,19 +131,22 @@ CREATE TABLE `task` (
   `task_priority` varchar(7) NOT NULL,
   `task_repeat` tinyint(1) NOT NULL,
   `user_user_id` int(11) NOT NULL,
-  `isCompleted` tinyint(1) NOT NULL DEFAULT 0
+  `isCompleted` tinyint(1) NOT NULL DEFAULT 0,
+  `createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `task`
 --
 
-INSERT INTO `task` (`task_id`, `task_name`, `task_date`, `task_startTime`, `task_endTime`, `task_duration`, `task_focusTime`, `task_breakTime`, `task_priority`, `task_repeat`, `user_user_id`, `isCompleted`) VALUES
-(6, 'Morning Workout', '2024-06-01', '06:00:00', '07:00:00', 60, 50, 10, 'High', 0, 2, 0),
-(7, 'Team Meeting', '2024-06-01', '09:00:00', '10:00:00', 60, 55, 5, 'Medium', 1, 2, 1),
-(8, 'Project Development', '2024-06-01', '10:30:00', '12:30:00', 120, 110, 10, 'High', 0, 4, 0),
-(9, 'Lunch Break', '2024-06-01', '12:30:00', '13:00:00', 30, 0, 30, 'Low', 0, 3, 0),
-(10, 'Client Call', '2024-06-01', '14:00:00', '15:00:00', 60, 55, 5, 'High', 0, 2, 0);
+INSERT INTO `task` (`task_id`, `task_name`, `task_date`, `task_startTime`, `task_endTime`, `task_duration`, `task_focusTime`, `task_breakTime`, `task_priority`, `task_repeat`, `user_user_id`, `isCompleted`, `createdAt`) VALUES
+(6, 'Study Advanced Algebra', '2024-06-02', '07:00:00', '08:00:00', 60, 20, 10, 'medium', 1, 2, 1, '2024-05-31 14:48:24'),
+(9, 'Lunch Break', '2024-06-01', '12:30:00', '13:00:00', 30, 0, 30, 'Low', 0, 3, 0, '2024-05-31 14:48:24'),
+(10, 'Client Call', '2024-06-01', '14:00:00', '15:00:00', 60, 55, 5, 'High', 0, 2, 0, '2024-05-31 14:48:24'),
+(11, 'Study Algebra', '2024-06-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 1, '2024-05-31 15:17:15'),
+(13, 'Study Science', '2024-06-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 0, '2024-05-31 22:16:35'),
+(14, 'Study Geo', '2024-06-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 0, '2024-05-31 22:16:50'),
+(15, 'Study Physics', '2024-06-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 1, '2024-05-31 15:17:19');
 
 -- --------------------------------------------------------
 
@@ -304,7 +307,7 @@ ALTER TABLE `potential_jobs`
 -- AUTO_INCREMENT for table `task`
 --
 ALTER TABLE `task`
-  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `university`

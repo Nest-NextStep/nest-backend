@@ -17,7 +17,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"date\": \"01/01/2024\",\n  \"title\": \"Updated Task Title\",\n  \"startTime\": \"07.00\",\n  \"endTime\": \"08.00\",\n  \"duration\": \"60 min\",\n  \"focusTime\": \"20 min\",\n  \"breakTime\": \"10 min\",\n  \"priority\": \"low\",\n  \"repeat\": false\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -25,14 +25,16 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/task",
+					"raw": "http://localhost:3000/task/user/john",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"task"
+						"task",
+						"user",
+						"john"
 					]
 				}
 			},
@@ -56,14 +58,16 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/task",
+					"raw": "http://localhost:3000/task/completed/john",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"task"
+						"task",
+						"completed",
+						"john"
 					]
 				}
 			},
@@ -87,14 +91,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/task",
+					"raw": "http://localhost:3000/task/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"task"
+						"task",
+						"6"
 					]
 				}
 			},
@@ -102,15 +107,12 @@
 		},
 		{
 			"name": "Post New Task",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"date\": \"01/01/2024\",\n  \"title\": \"Updated Task Title\",\n  \"startTime\": \"07.00\",\n  \"endTime\": \"08.00\",\n  \"duration\": \"60 min\",\n  \"focusTime\": \"20 min\",\n  \"breakTime\": \"10 min\",\n  \"priority\": \"low\",\n  \"repeat\": false\n}",
+					"raw": "{\n  \"task_name\": \"Study Physics\",\n  \"task_date\": \"2024-06-01\",\n  \"task_startTime\": \"07:00:00\",\n  \"task_endTime\": \"08:00:00\",\n  \"task_duration\": 60,\n  \"task_focusTime\": 20,\n  \"task_breakTime\": 10,\n  \"task_priority\": \"low\",\n  \"task_repeat\": 1,\n  \"user_user_id\": 2,\n  \"isCompleted\": \"false\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -138,7 +140,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n \"task_name\": \"Study Advanced Algebra\",\n  \"task_date\": \"2024-06-02\",\n  \"task_startTime\": \"07:00:00\",\n  \"task_endTime\": \"08:00:00\",\n  \"task_duration\": 60,\n  \"task_focusTime\": 20,\n  \"task_breakTime\": 10,\n  \"task_priority\": \"medium\",\n  \"task_repeat\": true,\n  \"isCompleted\": true\n\n}",
+					"raw": "{\n \"task_name\": \"Study Advanced Algebra\",\n  \"task_date\": \"2024-06-02\",\n  \"task_startTime\": \"07:00:00\",\n  \"task_endTime\": \"08:00:00\",\n  \"task_duration\": 60,\n  \"task_focusTime\": 20,\n  \"task_breakTime\": 10,\n  \"task_priority\": \"medium\",\n  \"task_repeat\": true,\n  \"isCompleted\": true\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -146,7 +148,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/task/1",
+					"raw": "http://localhost:3000/task/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -154,7 +156,7 @@
 					"port": "3000",
 					"path": [
 						"task",
-						"1"
+						"6"
 					]
 				}
 			},
@@ -166,7 +168,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/task/1",
+					"raw": "http://localhost:3000/task/8",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -174,7 +176,7 @@
 					"port": "3000",
 					"path": [
 						"task",
-						"1"
+						"8"
 					]
 				}
 			},
@@ -198,14 +200,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/task",
+					"raw": "http://localhost:3000/major/john",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"task"
+						"major",
+						"john"
 					]
 				}
 			},
@@ -229,14 +232,16 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/task",
+					"raw": "http://localhost:3000/major/detail/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"task"
+						"major",
+						"detail",
+						"1"
 					]
 				}
 			},
@@ -260,14 +265,21 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/task",
+					"raw": "http://localhost:3000/major/search?major_name=TEkNiK",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"task"
+						"major",
+						"search"
+					],
+					"query": [
+						{
+							"key": "major_name",
+							"value": "TEkNiK"
+						}
 					]
 				}
 			},
