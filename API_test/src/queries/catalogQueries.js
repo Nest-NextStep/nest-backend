@@ -58,10 +58,22 @@ const query_opinion = `
     m.major_id = ?
 `;
 
+const query_findMajor = `
+  SELECT 
+    m.major_id,
+    m.major_name,
+    m.major_description
+  FROM 
+    major m
+  WHERE 
+    m.major_name LIKE ?
+`
+
 module.exports = {
   getAllMajorQuery,
   query_uni,
   query_job,
   query_opinion,
   query_majorDetail,
+  query_findMajor
 };

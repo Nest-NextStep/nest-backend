@@ -61,6 +61,11 @@ const routes = [
     path: "/major/detail/{id}",
     handler: CatalogHandler.getMajorDetailByName,
   },
+  {
+    method: "GET",
+    path: "/major/search",
+    handler: CatalogHandler.findMajorByName,
+  }
 ];
 
 module.exports = routes;

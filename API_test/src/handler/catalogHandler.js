@@ -63,4 +63,22 @@ const getMajorDetailByName = async (request, h) => {
   }
 };
 
-module.exports = { getAllMajor, getMajorDetailByName };
+const findMajorByName = async (request, h) => {
+  try {
+    const { major_name } = request.query;
+    
+    if (!major_name) {
+      return h.response({ status: "fail", message: "Major name is required" }).code(400);
+    }
+
+    const replacements = [`%${major_name}%`];
+    const [results] = await sequelize.query(CatalogQuery.query_findMajor, { replacements });
+
+    return h.response({ status: "success", data: results }).code(200);
+  } catch (error) {
+    console.error(error);
+    return h.response("Failed to find majors").code(500);
+  }
+};
+
+module.exports = { getAllMajor, getMajorDetailByName, findMajorByName };
