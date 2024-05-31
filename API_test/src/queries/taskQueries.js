@@ -18,6 +18,8 @@ const uncompletedTaskList = `
       WHERE 
         u.username = ? AND
         t.isCompleted = FALSE
+      ORDER BY 
+        createdAt ASC
 `;
 
 // Count of completed tasks
@@ -72,8 +74,9 @@ const postTask = `
         task_priority,
         task_repeat,
         user_user_id,
-        isCompleted
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        isCompleted,
+        createdAt
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)
 `;
 
 const updateTask = `
@@ -118,6 +121,8 @@ const completedTaskList = `
       WHERE 
         u.username = ? AND
         t.isCompleted = TRUE
+      ORDER BY 
+        createdAt ASC
 `;
 
 module.exports = {
