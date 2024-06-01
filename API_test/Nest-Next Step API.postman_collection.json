@@ -163,6 +163,35 @@
 			"response": []
 		},
 		{
+			"name": "Update Task To Complete",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"task_name\": \"Study Advanced Algebra\",\n  \"task_date\": \"2024-06-02\",\n  \"task_startTime\": \"07:00:00\",\n  \"task_endTime\": \"08:00:00\",\n  \"task_duration\": 60,\n  \"task_focusTime\": 20,\n  \"task_breakTime\": 10,\n  \"task_priority\": \"medium\",\n  \"task_repeat\": true,\n  \"isCompleted\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/task/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"task",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Delete Task By ID",
 			"request": {
 				"method": "DELETE",

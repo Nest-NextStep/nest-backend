@@ -225,6 +225,32 @@ const getAllCompletedTask = async (request, h) => {
   }
 };
 
+// UPDATE TASK TO COMPLETED
+const updateTaskToCompleteHandler = async (request, h) => {
+  try {
+    const { id } = request.params;
+    id_parsed = parseInt(id);
+    const replacements = [id_parsed];
+
+    const [result] = await sequelize.query(TaskQuery.updateTaskToComplete, {
+      replacements,
+    });
+
+    // Check if any rows were affected (task was found and updated)
+    if (result.affectedRows === 0) {
+      return h
+        .response({ status: "fail", message: "Task not found" })
+        .code(404);
+    }
+    return h
+      .response({ status: "success", message: "Task updated successfully" })
+      .code(200);
+  } catch (error) {
+    console.log(error);
+    return h.response("Failed to update task").code(500);
+  }
+};
+
 module.exports = {
   getAllTaskByUsername,
   getAllCompletedTask,
@@ -233,4 +259,5 @@ module.exports = {
   postTask,
   editTask,
   deleteTask,
+  updateTaskToCompleteHandler,
 };

@@ -125,6 +125,15 @@ const completedTaskList = `
         createdAt ASC
 `;
 
+const updateTaskToComplete = `
+      UPDATE 
+        task 
+      SET 
+        task.isCompleted = true 
+      WHERE
+        task.task_id = ? 
+`;
+
 module.exports = {
   completedTaskCount,
   completedTaskList,
@@ -134,4 +143,5 @@ module.exports = {
   taskDetail,
   totalTaskCount,
   uncompletedTaskList,
+  updateTaskToComplete,
 };

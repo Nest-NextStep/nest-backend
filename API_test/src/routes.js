@@ -42,6 +42,11 @@ const routes = [
     path: "/task/{id}",
     handler: TaskHandler.editTask,
   },
+  {
+    method: "PUT",
+    path: "/task/complete/{id}",
+    handler: TaskHandler.updateTaskToCompleteHandler,
+  },
   // DELETE TASK BY ID
   {
     method: "DELETE",
@@ -65,7 +70,7 @@ const routes = [
     method: "GET",
     path: "/major/search",
     handler: CatalogHandler.findMajorByName,
-  }
+  },
 ];
 
 module.exports = routes;
