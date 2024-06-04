@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 31, 2024 at 05:28 PM
+-- Generation Time: Jun 04, 2024 at 03:55 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -22,47 +22,7 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-CREATE TABLE assessment_category (
-    category_id int  NOT NULL,
-    category_name varchar(10)  NOT NULL,
-    CONSTRAINT assessment_category_pk PRIMARY KEY (category_id)
-);
 
--- Table: assessment_option
-CREATE TABLE assessment_option (
-    option_id int  NOT NULL,
-    option_code int  NOT NULL,
-    option_text varchar(50)  NOT NULL,
-    CONSTRAINT assessment_option_pk PRIMARY KEY (option_id)
-);
-
--- Table: assessment_question
-CREATE TABLE assessment_question (
-    question_id int  NOT NULL,
-    question_text varchar(255)  NOT NULL,
-    assessment_category_category_id int  NOT NULL,
-    CONSTRAINT assessment_question_pk PRIMARY KEY (question_id)
-);
-
--- Table: assessment_question_assessment_option
-CREATE TABLE assessment_question_assessment_option (
-    assessment_question_question_id int  NOT NULL,
-    assessment_option_option_id int  NOT NULL,
-    CONSTRAINT assessment_question_assessment_option_pk PRIMARY KEY (assessment_question_question_id,assessment_option_option_id)
-);
-
--- foreign keys
--- Reference: assessment_question_assessment_category (table: assessment_question)
-ALTER TABLE assessment_question ADD CONSTRAINT assessment_question_assessment_category FOREIGN KEY assessment_question_assessment_category (assessment_category_category_id)
-    REFERENCES assessment_category (category_id);
-
--- Reference: assessment_question_assessment_option_assessment_option (table: assessment_question_assessment_option)
-ALTER TABLE assessment_question_assessment_option ADD CONSTRAINT assessment_question_assessment_option_assessment_option FOREIGN KEY assessment_question_assessment_option_assessment_option (assessment_option_option_id)
-    REFERENCES assessment_option (option_id);
-
--- Reference: assessment_question_assessment_option_assessment_question (table: assessment_question_assessment_option)
-ALTER TABLE assessment_question_assessment_option ADD CONSTRAINT assessment_question_assessment_option_assessment_question FOREIGN KEY assessment_question_assessment_option_assessment_question (assessment_question_question_id)
-    REFERENCES assessment_question (question_id);
 --
 -- Table structure for table `alumni_opinions`
 --
@@ -94,6 +54,52 @@ INSERT INTO `alumni_opinions` (`opinion_id`, `opinion_name`, `opinions_content`,
 (13, 'Mia Lee', 'Innovations in IT can lead to more efficient business processes.', 5),
 (14, 'Noah Young', 'Effective data management is crucial for business success.', 5),
 (15, 'Olivia King', 'Integrating different IT systems can improve overall efficiency.', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assessment_category`
+--
+
+CREATE TABLE `assessment_category` (
+  `category_id` int(11) NOT NULL,
+  `category_name` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assessment_option`
+--
+
+CREATE TABLE `assessment_option` (
+  `option_id` int(11) NOT NULL,
+  `option_code` int(11) NOT NULL,
+  `option_text` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assessment_question`
+--
+
+CREATE TABLE `assessment_question` (
+  `question_id` int(11) NOT NULL,
+  `question_text` varchar(255) NOT NULL,
+  `assessment_category_category_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assessment_question_assessment_option`
+--
+
+CREATE TABLE `assessment_question_assessment_option` (
+  `assessment_question_question_id` int(11) NOT NULL,
+  `assessment_option_option_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -181,12 +187,19 @@ CREATE TABLE `task` (
 
 INSERT INTO `task` (`task_id`, `task_name`, `task_date`, `task_startTime`, `task_endTime`, `task_duration`, `task_focusTime`, `task_breakTime`, `task_priority`, `task_repeat`, `user_user_id`, `isCompleted`, `createdAt`) VALUES
 (6, 'Study Advanced Algebra', '2024-06-02', '07:00:00', '08:00:00', 60, 20, 10, 'medium', 1, 2, 1, '2024-05-31 14:48:24'),
-(9, 'Lunch Break', '2024-06-01', '12:30:00', '13:00:00', 30, 0, 30, 'Low', 0, 3, 0, '2024-05-31 14:48:24'),
-(10, 'Client Call', '2024-06-01', '14:00:00', '15:00:00', 60, 55, 5, 'High', 0, 2, 0, '2024-05-31 14:48:24'),
+(9, 'Lunch Break', '2024-06-01', '12:30:00', '13:00:00', 30, 0, 30, 'Low', 0, 3, 1, '2024-06-01 07:58:32'),
+(10, 'Client Call', '2024-06-01', '14:00:00', '15:00:00', 60, 55, 5, 'High', 0, 2, 1, '2024-06-01 08:01:26'),
 (11, 'Study Algebra', '2024-06-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 1, '2024-05-31 15:17:15'),
 (13, 'Study Science', '2024-06-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 0, '2024-05-31 22:16:35'),
-(14, 'Study Geo', '2024-06-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 0, '2024-05-31 22:16:50'),
-(15, 'Study Physics', '2024-06-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 1, '2024-05-31 15:17:19');
+(14, 'Study Geo', '2024-06-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 1, '2024-06-01 07:53:41'),
+(15, 'Study Physics', '2024-06-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 1, '2024-05-31 15:17:19'),
+(16, 'Study Advanced history', '2024-06-02', '07:00:00', '08:00:00', 60, 20, 10, 'medium', 1, 2, 1, '2024-05-31 07:48:24'),
+(17, 'History Assigment', '2024-06-13', '12:30:00', '13:00:00', 30, 0, 30, 'Low', 0, 3, 0, '2024-05-31 07:48:24'),
+(18, 'Student Council Meeting', '2024-06-20', '14:00:00', '15:00:00', 60, 55, 5, 'High', 0, 2, 0, '2024-05-31 07:48:24'),
+(19, 'Java Language Exam', '2024-07-06', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 1, '2024-05-31 08:17:15'),
+(20, 'Study Java Advanced', '2024-07-11', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 0, '2024-05-31 15:16:35'),
+(21, 'Study German Language', '2024-08-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 0, '2024-05-31 15:16:50'),
+(22, 'Study Math Logaritmic', '2024-08-09', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 1, '2024-05-31 08:17:19');
 
 -- --------------------------------------------------------
 
@@ -282,6 +295,32 @@ ALTER TABLE `alumni_opinions`
   ADD KEY `alumni_opinions_major` (`major_major_id`);
 
 --
+-- Indexes for table `assessment_category`
+--
+ALTER TABLE `assessment_category`
+  ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `assessment_option`
+--
+ALTER TABLE `assessment_option`
+  ADD PRIMARY KEY (`option_id`);
+
+--
+-- Indexes for table `assessment_question`
+--
+ALTER TABLE `assessment_question`
+  ADD PRIMARY KEY (`question_id`),
+  ADD KEY `assessment_question_assessment_category` (`assessment_category_category_id`);
+
+--
+-- Indexes for table `assessment_question_assessment_option`
+--
+ALTER TABLE `assessment_question_assessment_option`
+  ADD PRIMARY KEY (`assessment_question_question_id`,`assessment_option_option_id`),
+  ADD KEY `assessment_question_assessment_option_assessment_option` (`assessment_option_option_id`);
+
+--
 -- Indexes for table `major`
 --
 ALTER TABLE `major`
@@ -347,7 +386,7 @@ ALTER TABLE `potential_jobs`
 -- AUTO_INCREMENT for table `task`
 --
 ALTER TABLE `task`
-  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `university`
@@ -370,6 +409,19 @@ ALTER TABLE `user_data`
 --
 ALTER TABLE `alumni_opinions`
   ADD CONSTRAINT `alumni_opinions_major` FOREIGN KEY (`major_major_id`) REFERENCES `major` (`major_id`);
+
+--
+-- Constraints for table `assessment_question`
+--
+ALTER TABLE `assessment_question`
+  ADD CONSTRAINT `assessment_question_assessment_category` FOREIGN KEY (`assessment_category_category_id`) REFERENCES `assessment_category` (`category_id`);
+
+--
+-- Constraints for table `assessment_question_assessment_option`
+--
+ALTER TABLE `assessment_question_assessment_option`
+  ADD CONSTRAINT `assessment_question_assessment_option_assessment_option` FOREIGN KEY (`assessment_option_option_id`) REFERENCES `assessment_option` (`option_id`),
+  ADD CONSTRAINT `assessment_question_assessment_option_assessment_question` FOREIGN KEY (`assessment_question_question_id`) REFERENCES `assessment_question` (`question_id`);
 
 --
 -- Constraints for table `potential_jobs`
@@ -395,13 +447,8 @@ ALTER TABLE `university`
 ALTER TABLE `user_major`
   ADD CONSTRAINT `user_major_major` FOREIGN KEY (`major_major_id`) REFERENCES `major` (`major_id`),
   ADD CONSTRAINT `user_major_user` FOREIGN KEY (`user_user_id`) REFERENCES `user_data` (`user_id`);
-
-
-
 COMMIT;
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
