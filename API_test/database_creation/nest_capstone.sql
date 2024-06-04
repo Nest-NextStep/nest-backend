@@ -22,7 +22,47 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
+CREATE TABLE assessment_category (
+    category_id int  NOT NULL,
+    category_name varchar(10)  NOT NULL,
+    CONSTRAINT assessment_category_pk PRIMARY KEY (category_id)
+);
 
+-- Table: assessment_option
+CREATE TABLE assessment_option (
+    option_id int  NOT NULL,
+    option_code int  NOT NULL,
+    option_text varchar(50)  NOT NULL,
+    CONSTRAINT assessment_option_pk PRIMARY KEY (option_id)
+);
+
+-- Table: assessment_question
+CREATE TABLE assessment_question (
+    question_id int  NOT NULL,
+    question_text varchar(255)  NOT NULL,
+    assessment_category_category_id int  NOT NULL,
+    CONSTRAINT assessment_question_pk PRIMARY KEY (question_id)
+);
+
+-- Table: assessment_question_assessment_option
+CREATE TABLE assessment_question_assessment_option (
+    assessment_question_question_id int  NOT NULL,
+    assessment_option_option_id int  NOT NULL,
+    CONSTRAINT assessment_question_assessment_option_pk PRIMARY KEY (assessment_question_question_id,assessment_option_option_id)
+);
+
+-- foreign keys
+-- Reference: assessment_question_assessment_category (table: assessment_question)
+ALTER TABLE assessment_question ADD CONSTRAINT assessment_question_assessment_category FOREIGN KEY assessment_question_assessment_category (assessment_category_category_id)
+    REFERENCES assessment_category (category_id);
+
+-- Reference: assessment_question_assessment_option_assessment_option (table: assessment_question_assessment_option)
+ALTER TABLE assessment_question_assessment_option ADD CONSTRAINT assessment_question_assessment_option_assessment_option FOREIGN KEY assessment_question_assessment_option_assessment_option (assessment_option_option_id)
+    REFERENCES assessment_option (option_id);
+
+-- Reference: assessment_question_assessment_option_assessment_question (table: assessment_question_assessment_option)
+ALTER TABLE assessment_question_assessment_option ADD CONSTRAINT assessment_question_assessment_option_assessment_question FOREIGN KEY assessment_question_assessment_option_assessment_question (assessment_question_question_id)
+    REFERENCES assessment_question (question_id);
 --
 -- Table structure for table `alumni_opinions`
 --
@@ -355,8 +395,13 @@ ALTER TABLE `university`
 ALTER TABLE `user_major`
   ADD CONSTRAINT `user_major_major` FOREIGN KEY (`major_major_id`) REFERENCES `major` (`major_id`),
   ADD CONSTRAINT `user_major_user` FOREIGN KEY (`user_user_id`) REFERENCES `user_data` (`user_id`);
+
+
+
 COMMIT;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
