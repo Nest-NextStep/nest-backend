@@ -38,7 +38,80 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Get Task Data By Username Result",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/task/user/john",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task",
+								"user",
+								"john"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "origin,accept-encoding"
+						},
+						{
+							"key": "access-control-expose-headers",
+							"value": "WWW-Authenticate,Server-Authorization"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Jun 2024 07:33:22 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"tasks\": [\n        {\n            \"task_id\": 18,\n            \"task_name\": \"Student Council Meeting\",\n            \"task_date\": \"2024-06-20\",\n            \"task_startTime\": \"14:00:00\",\n            \"task_endTime\": \"15:00:00\",\n            \"task_duration\": 60,\n            \"task_focusTime\": 55,\n            \"task_breakTime\": 5,\n            \"task_priority\": \"High\",\n            \"task_repeat\": 0,\n            \"isCompleted\": 0\n        },\n        {\n            \"task_id\": 20,\n            \"task_name\": \"Study Java Advanced\",\n            \"task_date\": \"2024-07-11\",\n            \"task_startTime\": \"07:00:00\",\n            \"task_endTime\": \"08:00:00\",\n            \"task_duration\": 60,\n            \"task_focusTime\": 20,\n            \"task_breakTime\": 10,\n            \"task_priority\": \"low\",\n            \"task_repeat\": 1,\n            \"isCompleted\": 0\n        },\n        {\n            \"task_id\": 21,\n            \"task_name\": \"Study German Language\",\n            \"task_date\": \"2024-08-01\",\n            \"task_startTime\": \"07:00:00\",\n            \"task_endTime\": \"08:00:00\",\n            \"task_duration\": 60,\n            \"task_focusTime\": 20,\n            \"task_breakTime\": 10,\n            \"task_priority\": \"low\",\n            \"task_repeat\": 1,\n            \"isCompleted\": 0\n        },\n        {\n            \"task_id\": 13,\n            \"task_name\": \"Study Science\",\n            \"task_date\": \"2024-06-01\",\n            \"task_startTime\": \"07:00:00\",\n            \"task_endTime\": \"08:00:00\",\n            \"task_duration\": 60,\n            \"task_focusTime\": 20,\n            \"task_breakTime\": 10,\n            \"task_priority\": \"low\",\n            \"task_repeat\": 1,\n            \"isCompleted\": 0\n        },\n        {\n            \"task_id\": 6,\n            \"task_name\": \"Study Advanced Algebra\",\n            \"task_date\": \"2024-06-02\",\n            \"task_startTime\": \"07:00:00\",\n            \"task_endTime\": \"08:00:00\",\n            \"task_duration\": 60,\n            \"task_focusTime\": 20,\n            \"task_breakTime\": 10,\n            \"task_priority\": \"medium\",\n            \"task_repeat\": 1,\n            \"isCompleted\": 0\n        },\n        {\n            \"task_id\": 10,\n            \"task_name\": \"Client Call\",\n            \"task_date\": \"2024-06-01\",\n            \"task_startTime\": \"14:00:00\",\n            \"task_endTime\": \"15:00:00\",\n            \"task_duration\": 60,\n            \"task_focusTime\": 55,\n            \"task_breakTime\": 5,\n            \"task_priority\": \"High\",\n            \"task_repeat\": 0,\n            \"isCompleted\": 0\n        },\n        {\n            \"task_id\": 19,\n            \"task_name\": \"Java Language Exam\",\n            \"task_date\": \"2024-07-06\",\n            \"task_startTime\": \"07:00:00\",\n            \"task_endTime\": \"08:00:00\",\n            \"task_duration\": 60,\n            \"task_focusTime\": 20,\n            \"task_breakTime\": 10,\n            \"task_priority\": \"low\",\n            \"task_repeat\": 1,\n            \"isCompleted\": 0\n        },\n        {\n            \"task_id\": 22,\n            \"task_name\": \"Study Math Logaritmic\",\n            \"task_date\": \"2024-08-09\",\n            \"task_startTime\": \"07:00:00\",\n            \"task_endTime\": \"08:00:00\",\n            \"task_duration\": 60,\n            \"task_focusTime\": 20,\n            \"task_breakTime\": 10,\n            \"task_priority\": \"low\",\n            \"task_repeat\": 1,\n            \"isCompleted\": 0\n        },\n        {\n            \"task_id\": 16,\n            \"task_name\": \"Study Advanced history\",\n            \"task_date\": \"2024-06-02\",\n            \"task_startTime\": \"07:00:00\",\n            \"task_endTime\": \"08:00:00\",\n            \"task_duration\": 60,\n            \"task_focusTime\": 20,\n            \"task_breakTime\": 10,\n            \"task_priority\": \"medium\",\n            \"task_repeat\": 1,\n            \"isCompleted\": 0\n        },\n        {\n            \"task_id\": 15,\n            \"task_name\": \"Study Physics\",\n            \"task_date\": \"2024-06-01\",\n            \"task_startTime\": \"07:00:00\",\n            \"task_endTime\": \"08:00:00\",\n            \"task_duration\": 60,\n            \"task_focusTime\": 20,\n            \"task_breakTime\": 10,\n            \"task_priority\": \"low\",\n            \"task_repeat\": 1,\n            \"isCompleted\": 0\n        }\n    ],\n    \"completedCount\": 2,\n    \"totalCount\": 12\n}"
+				}
+			]
 		},
 		{
 			"name": "Get Completed Task Item By Username",
@@ -71,7 +144,80 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Get Completed Task Item By Username",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date\": \"01/01/2024\",\n  \"title\": \"Updated Task Title\",\n  \"startTime\": \"07.00\",\n  \"endTime\": \"08.00\",\n  \"duration\": \"60 min\",\n  \"focusTime\": \"20 min\",\n  \"breakTime\": \"10 min\",\n  \"priority\": \"low\",\n  \"repeat\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/task/completed/john",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task",
+								"completed",
+								"john"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "origin"
+						},
+						{
+							"key": "access-control-expose-headers",
+							"value": "WWW-Authenticate,Server-Authorization"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-length",
+							"value": "467"
+						},
+						{
+							"key": "accept-ranges",
+							"value": "bytes"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Jun 2024 07:34:24 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"task_id\": 11,\n        \"task_name\": \"Study Algebra\",\n        \"task_date\": \"2024-06-01\",\n        \"task_startTime\": \"07:00:00\",\n        \"task_endTime\": \"08:00:00\",\n        \"task_duration\": 60,\n        \"task_focusTime\": 20,\n        \"task_breakTime\": 10,\n        \"task_priority\": \"low\",\n        \"task_repeat\": 1,\n        \"isCompleted\": 1\n    },\n    {\n        \"task_id\": 14,\n        \"task_name\": \"Study Geo\",\n        \"task_date\": \"2024-06-01\",\n        \"task_startTime\": \"07:00:00\",\n        \"task_endTime\": \"08:00:00\",\n        \"task_duration\": 60,\n        \"task_focusTime\": 20,\n        \"task_breakTime\": 10,\n        \"task_priority\": \"low\",\n        \"task_repeat\": 1,\n        \"isCompleted\": 1\n    }\n]"
+				}
+			]
 		},
 		{
 			"name": "Get Task Detail By Id",
@@ -103,7 +249,79 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Get Task Detail By Id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date\": \"01/01/2024\",\n  \"title\": \"Updated Task Title\",\n  \"startTime\": \"07.00\",\n  \"endTime\": \"08.00\",\n  \"duration\": \"60 min\",\n  \"focusTime\": \"20 min\",\n  \"breakTime\": \"10 min\",\n  \"priority\": \"low\",\n  \"repeat\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/task/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task",
+								"6"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "origin"
+						},
+						{
+							"key": "access-control-expose-headers",
+							"value": "WWW-Authenticate,Server-Authorization"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-length",
+							"value": "231"
+						},
+						{
+							"key": "accept-ranges",
+							"value": "bytes"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Jun 2024 07:34:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"task_id\": 6,\n        \"task_name\": \"Study Advanced Algebra\",\n        \"task_date\": \"2024-06-02\",\n        \"task_startTime\": \"07:00:00\",\n        \"task_endTime\": \"08:00:00\",\n        \"task_duration\": 60,\n        \"task_focusTime\": 20,\n        \"task_breakTime\": 10,\n        \"task_priority\": \"medium\",\n        \"task_repeat\": 1\n    }\n]"
+				}
+			]
 		},
 		{
 			"name": "Post New Task",
@@ -131,7 +349,74 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Post New Task",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"task_name\": \"Study Physics\",\n  \"task_date\": \"2024-06-01\",\n  \"task_startTime\": \"07:00:00\",\n  \"task_endTime\": \"08:00:00\",\n  \"task_duration\": 60,\n  \"task_focusTime\": 20,\n  \"task_breakTime\": 10,\n  \"task_priority\": \"low\",\n  \"task_repeat\": 1,\n  \"user_user_id\": 2,\n  \"isCompleted\": \"false\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "origin"
+						},
+						{
+							"key": "access-control-expose-headers",
+							"value": "WWW-Authenticate,Server-Authorization"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-length",
+							"value": "58"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Jun 2024 07:34:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"message\": \"Task created successfully\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Update Task By ID",
@@ -160,7 +445,75 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Update Task By ID",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"task_name\": \"Study Advanced Algebra\",\n  \"task_date\": \"2024-06-02\",\n  \"task_startTime\": \"07:00:00\",\n  \"task_endTime\": \"08:00:00\",\n  \"task_duration\": 60,\n  \"task_focusTime\": 20,\n  \"task_breakTime\": 10,\n  \"task_priority\": \"medium\",\n  \"task_repeat\": true,\n  \"isCompleted\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/task/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task",
+								"6"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "origin"
+						},
+						{
+							"key": "access-control-expose-headers",
+							"value": "WWW-Authenticate,Server-Authorization"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-length",
+							"value": "58"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Jun 2024 07:34:43 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"message\": \"Task updated successfully\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Update Task To Complete",
@@ -177,7 +530,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/task/6",
+					"raw": "http://localhost:3000/task/complete/10",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -185,11 +538,81 @@
 					"port": "3000",
 					"path": [
 						"task",
-						"6"
+						"complete",
+						"10"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Update Task To Complete",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"task_name\": \"Study Advanced Algebra\",\n  \"task_date\": \"2024-06-02\",\n  \"task_startTime\": \"07:00:00\",\n  \"task_endTime\": \"08:00:00\",\n  \"task_duration\": 60,\n  \"task_focusTime\": 20,\n  \"task_breakTime\": 10,\n  \"task_priority\": \"medium\",\n  \"task_repeat\": true,\n  \"isCompleted\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/task/complete/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task",
+								"complete",
+								"10"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "origin"
+						},
+						{
+							"key": "access-control-expose-headers",
+							"value": "WWW-Authenticate,Server-Authorization"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-length",
+							"value": "58"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Jun 2024 07:34:47 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"message\": \"Task updated successfully\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Delete Task By ID",
@@ -209,7 +632,66 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Delete Task By ID",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/task/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task",
+								"6"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "origin"
+						},
+						{
+							"key": "access-control-expose-headers",
+							"value": "WWW-Authenticate,Server-Authorization"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-length",
+							"value": "58"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Jun 2024 07:34:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"message\": \"Task deleted successfully\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Get All Major and Recomennded",
@@ -241,7 +723,79 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Get All Major and Recomennded",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date\": \"01/01/2024\",\n  \"title\": \"Updated Task Title\",\n  \"startTime\": \"07.00\",\n  \"endTime\": \"08.00\",\n  \"duration\": \"60 min\",\n  \"focusTime\": \"20 min\",\n  \"breakTime\": \"10 min\",\n  \"priority\": \"low\",\n  \"repeat\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/major/john",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"major",
+								"john"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "origin,accept-encoding"
+						},
+						{
+							"key": "access-control-expose-headers",
+							"value": "WWW-Authenticate,Server-Authorization"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Jun 2024 07:34:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"majorRecommended\": [\n        {\n            \"major_name\": \"Teknik Informatika\",\n            \"major_description\": \"Teknik Informatika merupakan bidang ilmu yang mempelajari bagaimana menggunakan teknologi komputer secara optimal guna menangani masalah transformasi atau pengolahan data dengan proses logika. Di Jurusan Teknik Informatika kamu akan mempelajari berbagai prinsip terkait ilmu komputer mulai dari proses perancangan, pengembangan, pengujian, hingga evaluasi sistem operasi perangkat lunak. Selama kuliah kamu akan banyak mengkaji pemrograman dan komputasi, dan dibekali pula dengan keterampilan merancang perangkat lunak.\"\n        },\n        {\n            \"major_name\": \"Teknik Sipil\",\n            \"major_description\": \"Teknik sipil adalah bidang ilmu yang mempelajari perencanaan/perancangan, manufaktur, manajemen/pengelolaan, dan konservasi dari beragam fasilitas dan sistem untuk mendukung sebuah kota, pedesaan, dan perkotaan. Artinya, seorang lulusan teknik sipil perlu menguasai ilmu terkait desain (saat melakukan perancangan), konsturksi (saat melakukan pembangunan dan menyusun sistem pengelolaan), hingga pemeliharaan lingkungan (saat melihat dampak pembangunan dari berbagai aspek).\"\n        }\n    ],\n    \"majorsAll\": [\n        {\n            \"major_id\": 1,\n            \"major_name\": \"Teknik Informatika\",\n            \"major_description\": \"Teknik Informatika merupakan bidang ilmu yang mempelajari bagaimana menggunakan teknologi komputer secara optimal guna menangani masalah transformasi atau pengolahan data dengan proses logika. Di Jurusan Teknik Informatika kamu akan mempelajari berbagai prinsip terkait ilmu komputer mulai dari proses perancangan, pengembangan, pengujian, hingga evaluasi sistem operasi perangkat lunak. Selama kuliah kamu akan banyak mengkaji pemrograman dan komputasi, dan dibekali pula dengan keterampilan merancang perangkat lunak.\"\n        },\n        {\n            \"major_id\": 2,\n            \"major_name\": \"Ilmu Hukum\",\n            \"major_description\": \"Jurusan Ilmu Hukum adalah studi yang mempelajari berbagai sistem hukum yang berkaitan dengan kehidupan kemasyarakatan. Di Prodi Ilmu Hukum, mahasiswa juga belajar mengenai perundang-undangan termasuk di dalamnya hukum dasar (konstitusi, hukum perdata, hukum dagang, hukum tata negara, hukum pidana, hukum tata pidana) hingga hukum internasional dengan cakupan yang cukup luas. Pada akhir masa kuliah, biasanya mahasiswa jurusan ini dituntut untuk mengaplikasikan ilmu yang telah diperoleh selama kuliah melalui magang di berbagai firma hukum, lembaga pengadilan, dan juga kantor kejaksaan.\"\n        },\n        {\n            \"major_id\": 3,\n            \"major_name\": \"Psikologi\",\n            \"major_description\": \"Jurusan Psikologi adalah salah satu bidang keilmuan yang mempelajari tentang manusia. Manusia yang dimaksud di sini tak sebatas pada perilakunya saja, melainkan mempelajari jiwa yang mempengaruhi tindakan tersebut. Misalnya pada konteks sosial, seperti mempelajari bagaimana manusia berinteraksi dengan lingkungannya, atau dalam konteks industri mempelajari bagaimana seseorang berperilaku terkait dengan posisinya di sebuah perusahaan.\"\n        },\n        {\n            \"major_id\": 4,\n            \"major_name\": \"Teknik Sipil\",\n            \"major_description\": \"Teknik sipil adalah bidang ilmu yang mempelajari perencanaan/perancangan, manufaktur, manajemen/pengelolaan, dan konservasi dari beragam fasilitas dan sistem untuk mendukung sebuah kota, pedesaan, dan perkotaan. Artinya, seorang lulusan teknik sipil perlu menguasai ilmu terkait desain (saat melakukan perancangan), konsturksi (saat melakukan pembangunan dan menyusun sistem pengelolaan), hingga pemeliharaan lingkungan (saat melihat dampak pembangunan dari berbagai aspek).\"\n        },\n        {\n            \"major_id\": 5,\n            \"major_name\": \"Sistem Informasi\",\n            \"major_description\": \"Jurusan Sistem Informasi adalah bidang keilmuan yang menggabungkan ilmu komputer dengan bisnis dan manajemen. Di prodi ini kamu akan belajar gimana mengidentifikasi kebutuhan dan proses bisnis perusahaan berdasarkan data-data yang dimiliki perusahan, kemudian merancang sistem yang sesuai dengan kebutuhan perusahaan.\"\n        }\n    ]\n}"
+				}
+			]
 		},
 		{
 			"name": "Get Major Detail By Id",
@@ -274,7 +828,80 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Get Major Detail By Id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date\": \"01/01/2024\",\n  \"title\": \"Updated Task Title\",\n  \"startTime\": \"07.00\",\n  \"endTime\": \"08.00\",\n  \"duration\": \"60 min\",\n  \"focusTime\": \"20 min\",\n  \"breakTime\": \"10 min\",\n  \"priority\": \"low\",\n  \"repeat\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/major/detail/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"major",
+								"detail",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "origin,accept-encoding"
+						},
+						{
+							"key": "access-control-expose-headers",
+							"value": "WWW-Authenticate,Server-Authorization"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Jun 2024 07:35:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"major\": [\n        {\n            \"major_id\": 1,\n            \"major_name\": \"Teknik Informatika\",\n            \"major_description\": \"Teknik Informatika merupakan bidang ilmu yang mempelajari bagaimana menggunakan teknologi komputer secara optimal guna menangani masalah transformasi atau pengolahan data dengan proses logika. Di Jurusan Teknik Informatika kamu akan mempelajari berbagai prinsip terkait ilmu komputer mulai dari proses perancangan, pengembangan, pengujian, hingga evaluasi sistem operasi perangkat lunak. Selama kuliah kamu akan banyak mengkaji pemrograman dan komputasi, dan dibekali pula dengan keterampilan merancang perangkat lunak.\"\n        }\n    ],\n    \"majorUniversity\": [\n        {\n            \"university_id\": 1,\n            \"university_name\": \"Institut Teknologi Sepuluh Nopember\",\n            \"university_location\": \"Surabaya, Jawa Timur\",\n            \"university_acreditation\": \"A\",\n            \"university_link\": \"https://www.its.ac.id/informatika/id/akademik/program-studi/\"\n        },\n        {\n            \"university_id\": 2,\n            \"university_name\": \"Universitas Indonesia\",\n            \"university_location\": \"Depok, Jawa Barat\",\n            \"university_acreditation\": \"A\",\n            \"university_link\": \"https://www.ui.ac.id/program-studi/sarjana-ilmu-komputer/\"\n        },\n        {\n            \"university_id\": 3,\n            \"university_name\": \"Universitas Telkom Surabaya\",\n            \"university_location\": \"Surabaya, Jawa Timur\",\n            \"university_acreditation\": \"A\",\n            \"university_link\": \"https://bif-sby.telkomuniversity.ac.id/\"\n        }\n    ],\n    \"majorJob\": [\n        {\n            \"jobs_name\": \"Software Developer\",\n            \"jobs_salary\": \"70000\",\n            \"jobs_description\": \"Develops and maintains software applications.\"\n        },\n        {\n            \"jobs_name\": \"Network Administrator\",\n            \"jobs_salary\": \"65000\",\n            \"jobs_description\": \"Manages and supports computer networks.\"\n        },\n        {\n            \"jobs_name\": \"Data Analyst\",\n            \"jobs_salary\": \"72000\",\n            \"jobs_description\": \"Analyzes and interprets complex data sets.\"\n        }\n    ],\n    \"majorOpinion\": [\n        {\n            \"opinion_name\": \"Alice Johnson\",\n            \"opinions_content\": \"AI will significantly change the landscape of technology in the next decade.\"\n        },\n        {\n            \"opinion_name\": \"Bob Smith\",\n            \"opinions_content\": \"As technology advances, cybersecurity threats will become more complex.\"\n        },\n        {\n            \"opinion_name\": \"Carol Williams\",\n            \"opinions_content\": \"Ensuring data privacy is critical in the age of big data.\"\n        }\n    ]\n}"
+				}
+			]
 		},
 		{
 			"name": "Get Major By Query",
@@ -312,7 +939,85 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Get Major By Query",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date\": \"01/01/2024\",\n  \"title\": \"Updated Task Title\",\n  \"startTime\": \"07.00\",\n  \"endTime\": \"08.00\",\n  \"duration\": \"60 min\",\n  \"focusTime\": \"20 min\",\n  \"breakTime\": \"10 min\",\n  \"priority\": \"low\",\n  \"repeat\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/major/search?major_name=TEkNiK",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"major",
+								"search"
+							],
+							"query": [
+								{
+									"key": "major_name",
+									"value": "TEkNiK"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "origin,accept-encoding"
+						},
+						{
+							"key": "access-control-expose-headers",
+							"value": "WWW-Authenticate,Server-Authorization"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 05 Jun 2024 07:35:10 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": [\n        {\n            \"major_id\": 1,\n            \"major_name\": \"Teknik Informatika\",\n            \"major_description\": \"Teknik Informatika merupakan bidang ilmu yang mempelajari bagaimana menggunakan teknologi komputer secara optimal guna menangani masalah transformasi atau pengolahan data dengan proses logika. Di Jurusan Teknik Informatika kamu akan mempelajari berbagai prinsip terkait ilmu komputer mulai dari proses perancangan, pengembangan, pengujian, hingga evaluasi sistem operasi perangkat lunak. Selama kuliah kamu akan banyak mengkaji pemrograman dan komputasi, dan dibekali pula dengan keterampilan merancang perangkat lunak.\"\n        },\n        {\n            \"major_id\": 4,\n            \"major_name\": \"Teknik Sipil\",\n            \"major_description\": \"Teknik sipil adalah bidang ilmu yang mempelajari perencanaan/perancangan, manufaktur, manajemen/pengelolaan, dan konservasi dari beragam fasilitas dan sistem untuk mendukung sebuah kota, pedesaan, dan perkotaan. Artinya, seorang lulusan teknik sipil perlu menguasai ilmu terkait desain (saat melakukan perancangan), konsturksi (saat melakukan pembangunan dan menyusun sistem pengelolaan), hingga pemeliharaan lingkungan (saat melihat dampak pembangunan dari berbagai aspek).\"\n        }\n    ]\n}"
+				}
+			]
 		}
 	],
 	"event": [
