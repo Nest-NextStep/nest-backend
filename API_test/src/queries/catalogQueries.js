@@ -1,5 +1,6 @@
 const getAllMajorQuery = `
       SELECT 
+        m.major_id,
         m.major_name,
         m.major_description
       FROM 
@@ -34,6 +35,7 @@ const query_uni = `
 //GET POTENTIAL JOBS
 const query_job = ` 
     SELECT 
+        p.jobs_id,
         p.jobs_name,
         p.jobs_salary, 
         p.jobs_description 
@@ -48,6 +50,7 @@ const query_job = `
 //GET ALUMNI OPINIONS
 const query_opinion = `
      SELECT 
+        a.opinion_id,
         a.opinion_name, 
         a.opinions_content 
     FROM 
@@ -67,7 +70,7 @@ const query_findMajor = `
     major m
   WHERE 
     m.major_name LIKE ?
-`
+`;
 
 module.exports = {
   getAllMajorQuery,
@@ -75,5 +78,5 @@ module.exports = {
   query_job,
   query_opinion,
   query_majorDetail,
-  query_findMajor
+  query_findMajor,
 };
