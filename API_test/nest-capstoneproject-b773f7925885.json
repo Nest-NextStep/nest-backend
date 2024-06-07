@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "nest-capstoneproject",
+  "private_key_id": "b773f7925885da94978929dc7e9b25f116bb4720",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQClGcV92EamPLjX\nXRkvLznjcU8XB9CfZ09AaMyIsSBJCe9IGTdw9IUh7Pg+mg+esk2AvU90qows5MWT\noqoogZyf4bjqaIuhEFAoq6DPZ1gBtcK4KTgUkPisRjbGAUR2jiTjvWw4pHrfzuca\n9s01QdRv/Uf7buNOL5eAU4Go6doRH+rElL2ZBzt18V9BT+m1rKV8+qHXc4uYzkCN\nfH5sFDoVBTnQOLtG/SUIxss+nrAV+hgfttXW+W+HLeYQLWlLR3c38xQ0bPG1z01i\n/rN97JKNFIr31eMEa1xv+3H/j3r5ZhRygMnHW5efgZnqB80JPCrtQsmGIJncPCz2\nBII21e17AgMBAAECggEABnPy6Z/F5yJxcQ10+gilARRBLJvEFi7iBJj0AZW2ttQa\nE53UsmgEOha6fyvjV2cNq236yIsP7oNEi6gscWfbeM5IPXU3m+R41ZYbs2+NG4gA\no9UMmZUu+wDFjEipZd7ZZ0NUkwQuv0eldcLWs3GuvW/PW+7yGHC4wa3B4Bm/ybJ/\nEny8E/nhLMwP3dYZe7MnQjL1wcwqtyGZ0Fih3hU10/cxs/WAlXe1tGuyaIfrc5nf\nJ5p/ghCLmm2hLxgd/lB8ccgz9YgCknbRr9WyQ6HgbcHs5+nZyErxNhxrXNOa/jKA\nrlQXhv/h+hFGig8ZJmbqqCIGH1cXOuDURDMxAHJODQKBgQDXWtbZovpXCm5FQIJl\nIt3iUNN/klHJmvX6OB/i4U4EhXzLMg+mKbdU/Urpn6E5oDpHVvMzn8Dx8x42pHy6\nakNIKSwT5ZfCB/iMXfA4R1URD4Vj4h4u2DaxMC8SNtQMItrR9mftDR8Xw+ZsrRoP\n2oMP/aJq/O09DOr+m2HQFp32LQKBgQDEQtV4WmVTSY7to6koP2SUKi6iRPCJC44f\nqVFkjYPOmnlsjb/jy9dPaD1I/NovZkapNbwtRyfu9u4X/KzTnUISWQTkDRMKJ1Qd\njNa0PzkBTVoeDmVusvROZfaAilJpnGDljlvv9QLJHrENn4HU0ZIsEjAo1Lws5BlZ\nbQdqp2ijRwKBgFBR3g4f/hSWnFgR3lBQN8df8/IBpaV2uUVQx3u8IngHPWsfybxk\nlK8LJXSLB/vRKctPv7dCXxkeXudsY+S3G07/pCPrnrVMecQIiT7ERBLv4gVF4ZIB\nLCzb1sKJVn8MRObIayx7l1wqwXdI/I5rJjTBmWEj4mvBtKevVkThGpslAoGBAJur\nH0L9AE2VlMas/2krDw3uf1q6L8ej4LEATczh6mAfapxNupxmfHtBhQq1dCIQj497\nTazkOapzNdrU0ghvPY7sCNMSA74T/8YIhewmEYMU5Zvdc1rgmqLsgR7nmAKoxLqP\ntiCYSANaUrkpgYNaTwSh0I0yX6eDrQ+fSTixXG/VAoGBAM4IHtfGqsurrOJEuM0o\ntqV9cVZwEODaaBjOeyttCOAyrNq4G42rp+2ZmwxUub8pQgaejQaweohxins1Z6Cs\nsvIDYyIE8tJxCoKylEis3V8Gps678Ulh8gors9NmPC5EhZUCixFMDOifK3yVXRj1\neSxWIYSBQbJqRr6E1ePX4Mk0\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-5cg93@nest-capstoneproject.iam.gserviceaccount.com",
+  "client_id": "105959315121234486958",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-5cg93%40nest-capstoneproject.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

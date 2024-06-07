@@ -1,9 +1,23 @@
+const AuthHandler = require("../src/handler/authHandler");
 const TaskHandler = require("../src/handler/taskHandler");
 const UserHandler = require("../src/handler/userHandler");
 const CatalogHandler = require("../src/handler/catalogHandler");
 const { Task } = require("./model/taskModel");
+const { verifyToken } = require('../src/utils/auth');
+
 
 const routes = [
+  // AUTH HANDLER
+  {
+    method: "POST",
+    path: "/register",
+    handler: AuthHandler.registerUser,
+  },
+  {
+    method: "POST",
+    path: "/login",
+    handler: AuthHandler.loginUser,
+  },
   //USER HANDLER
   {
     method: "GET",
@@ -17,6 +31,9 @@ const routes = [
     method: "GET",
     path: "/task/user/{username}",
     handler: TaskHandler.getAllTaskByUsername,
+    options: {
+      pre: [{ method: verifyToken }],
+    },
   },
   // GET TASK BASED ON ID
   {
