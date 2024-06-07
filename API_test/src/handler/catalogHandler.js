@@ -45,7 +45,7 @@ const getMajorDetailByName = async (request, h) => {
       sequelize.query(CatalogQuery.query_opinion, { replacements }),
     ]);
 
-    const major = majorDetail[0];
+    const major = majorDetail[0][0];
     const majorUniversity = majorUniversityDetail[0];
     const majorJob = majorJobDetail[0];
     const majorOpinion = majorOpinionDetail[0];
@@ -66,13 +66,17 @@ const getMajorDetailByName = async (request, h) => {
 const findMajorByName = async (request, h) => {
   try {
     const { major_name } = request.query;
-    
+
     if (!major_name) {
-      return h.response({ status: "fail", message: "Major name is required" }).code(400);
+      return h
+        .response({ status: "fail", message: "Major name is required" })
+        .code(400);
     }
 
     const replacements = [`%${major_name}%`];
-    const [results] = await sequelize.query(CatalogQuery.query_findMajor, { replacements });
+    const [results] = await sequelize.query(CatalogQuery.query_findMajor, {
+      replacements,
+    });
 
     return h.response({ status: "success", data: results }).code(200);
   } catch (error) {

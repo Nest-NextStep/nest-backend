@@ -6,7 +6,7 @@ const { sequelize } = require("../utils/database");
 const getAllUsers = async (request, h) => {
   const { username } = request.params;
   try {
-    const [results, metadata] = await sequelize.query(
+    const [profileresults, metadata] = await sequelize.query(
       "SELECT * FROM user_data"
     );
     return h.response(results).code(200);

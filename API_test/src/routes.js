@@ -1,6 +1,8 @@
 const TaskHandler = require("../src/handler/taskHandler");
 const UserHandler = require("../src/handler/userHandler");
 const CatalogHandler = require("../src/handler/catalogHandler");
+const ProfileHandler = require("../src/handler/profileHandler");
+const AssessmentHandler = require("../src/handler/assessmentHandler");
 const { Task } = require("./model/taskModel");
 
 const routes = [
@@ -70,6 +72,25 @@ const routes = [
     method: "GET",
     path: "/major/search",
     handler: CatalogHandler.findMajorByName,
+  },
+
+  //Profile Handler
+  {
+    method: "GET",
+    path: "/profile/{username}",
+    handler: ProfileHandler.getUserDataByUsername,
+  },
+  {
+    method: "PUT",
+    path: "/profile/update/{username}",
+    handler: ProfileHandler.updateUserByUsernameHandler,
+  },
+
+  //assessment Handler
+  {
+    method: "GET",
+    path: "/assessment/{category}",
+    handler: AssessmentHandler.getQNAByCategoryHandler,
   },
 ];
 
