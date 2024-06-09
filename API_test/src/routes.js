@@ -42,35 +42,53 @@ const routes = [
     method: "GET",
     path: "/task/{id}",
     handler: TaskHandler.getTaskById,
+    options: {
+      pre: [{ method: verifyToken }],
+    },
   },
   // GET COMPLETED TASK BY USERNAME
   {
     method: "GET",
     path: "/task/completed/{username}",
     handler: TaskHandler.getAllCompletedTask,
+    options: {
+      pre: [{ method: verifyToken }],
+    },
   },
   // POST NEW TASK
   {
     method: "POST",
     path: "/task",
     handler: TaskHandler.postTask,
+    options: {
+      pre: [{ method: verifyToken }],
+    },
   },
   // EDIT TASK BY ID
   {
     method: "PUT",
     path: "/task/{id}",
     handler: TaskHandler.editTask,
+    options: {
+      pre: [{ method: verifyToken }],
+    },
   },
   {
     method: "PUT",
     path: "/task/complete/{id}",
     handler: TaskHandler.updateTaskToCompleteHandler,
+    options: {
+      pre: [{ method: verifyToken }],
+    },
   },
   // DELETE TASK BY ID
   {
     method: "DELETE",
     path: "/task/{id}",
     handler: TaskHandler.deleteTask,
+    options: {
+      pre: [{ method: verifyToken }],
+    },
   },
 
   //CATALOG HANDLER
@@ -79,16 +97,25 @@ const routes = [
     method: "GET",
     path: "/major/{username}",
     handler: CatalogHandler.getAllMajor,
+    options: {
+      pre: [{ method: verifyToken }],
+    },
   },
   {
     method: "GET",
     path: "/major/detail/{id}",
     handler: CatalogHandler.getMajorDetailByName,
+    options: {
+      pre: [{ method: verifyToken }],
+    },
   },
   {
     method: "GET",
     path: "/major/search",
     handler: CatalogHandler.findMajorByName,
+    options: {
+      pre: [{ method: verifyToken }],
+    },
   },
 
   //Profile Handler
@@ -96,11 +123,17 @@ const routes = [
     method: "GET",
     path: "/profile/{username}",
     handler: ProfileHandler.getUserDataByUsername,
+    options: {
+      pre: [{ method: verifyToken }],
+    },
   },
   {
     method: "PUT",
     path: "/profile/update/{username}",
     handler: ProfileHandler.updateUserByUsernameHandler,
+    options: {
+      pre: [{ method: verifyToken }],
+    },
   },
 
   //assessment Handler
@@ -108,6 +141,9 @@ const routes = [
     method: "GET",
     path: "/assessment/{category}",
     handler: AssessmentHandler.getQNAByCategoryHandler,
+    options: {
+      pre: [{ method: verifyToken }],
+    },
   },
 ];
 
