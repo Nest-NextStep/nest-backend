@@ -20,6 +20,11 @@ const routes = [
     path: "/login",
     handler: AuthHandler.loginUser,
   },
+  {
+    method: "POST",
+    path: "/refresh-token",
+    handler: AuthHandler.refreshToken,
+  },
   //USER HANDLER
   {
     method: "GET",

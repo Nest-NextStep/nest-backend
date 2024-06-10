@@ -24,6 +24,9 @@ const verifyToken = async (request, h) => {
     request.auth = { uid: decodedToken.uid };
     return h.continue;
   } catch (error) {
+    if (error.code === 'auth/id-token-expired') {
+      return h.response({ error: "Token expired", reauthenticate: true }).code(401).takeover();
+    }
     console.error("Token verification error:", error);
     return h.response({ error: "Unauthorized" }).code(401).takeover();
   }

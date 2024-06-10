@@ -95,6 +95,7 @@ const loginUser = async (request, h) => {
           username,
           accessToken,
           recommendedMajor: result,
+          user,
         })
         .code(200);
     }
@@ -104,4 +105,24 @@ const loginUser = async (request, h) => {
   }
 };
 
-module.exports = { registerUser, loginUser };
+const refreshToken = async (request, h) => {
+  const { refreshToken } = request.payload;
+
+  try {
+    // Verify refreshToken and get the UID
+    const decodedToken = await admin.auth().verifyIdToken(refreshToken);
+    const uid = decodedToken.uid;
+
+    // Generate a new ID token using the UID
+    const idToken = await admin.auth().createCustomToken(uid);
+
+    // Return the new ID token
+    return h.response({ idToken }).code(200);
+  } catch (error) {
+    console.error("Error refreshing token:", error);
+    return h.response({ error: "Invalid refresh token" }).code(401);
+  }
+};
+
+
+module.exports = { registerUser, loginUser, refreshToken };
