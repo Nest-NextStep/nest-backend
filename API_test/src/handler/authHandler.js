@@ -1,8 +1,9 @@
 // /src/handler/authHandler.js
-const { firebase } = require("../utils/firebase");
+const { firebase, firebaseConfig } = require("../utils/firebase");
 const admin = require("firebase-admin");
 const { getAuth, signInWithEmailAndPassword } = require("firebase/auth");
 const { sequelize } = require("../utils/database");
+const axios = require('axios');
 
 const registerUser = async (request, h) => {
   try {
@@ -109,15 +110,21 @@ const refreshToken = async (request, h) => {
   const { refreshToken } = request.payload;
 
   try {
-    // Verify refreshToken and get the UID
-    const decodedToken = await admin.auth().verifyIdToken(refreshToken);
-    const uid = decodedToken.uid;
+    console.log(`Refreshing token with refreshToken: ${refreshToken}`); // Debug log
+    console.log(`Using API Key: ${firebaseConfig.apiKey}`); // Debug log to check apiKey
+    
+    // Make a POST request to Firebase Auth REST API to refresh the token
+    const response = await axios.post(`https://securetoken.googleapis.com/v1/token?key=${firebaseConfig.apiKey}`, {
+      grant_type: 'refresh_token',
+      refresh_token: refreshToken
+    });
 
-    // Generate a new ID token using the UID
-    const idToken = await admin.auth().createCustomToken(uid);
+    console.log('Firebase token refresh response:', response.data); // Log response data
 
-    // Return the new ID token
-    return h.response({ idToken }).code(200);
+    const { id_token: accessToken, refresh_token: newRefreshToken } = response.data;
+
+    // Return the new ID token and refresh token
+    return h.response({ accessToken, refreshToken: newRefreshToken }).code(200);
   } catch (error) {
     console.error("Error refreshing token:", error);
     return h.response({ error: "Invalid refresh token" }).code(401);
