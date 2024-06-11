@@ -20,4 +20,4 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-module.exports = { admin, firebase };
+module.exports = { admin, firebase, firebaseConfig };

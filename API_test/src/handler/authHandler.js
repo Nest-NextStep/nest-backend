@@ -1,8 +1,9 @@
 // /src/handler/authHandler.js
-const { firebase } = require("../utils/firebase");
+const { firebase, firebaseConfig } = require("../utils/firebase");
 const admin = require("firebase-admin");
 const { getAuth, signInWithEmailAndPassword } = require("firebase/auth");
 const { sequelize } = require("../utils/database");
+const axios = require('axios');
 
 const registerUser = async (request, h) => {
   try {
@@ -105,4 +106,47 @@ const loginUser = async (request, h) => {
   }
 };
 
-module.exports = { registerUser, loginUser };
+const changePassword = async (request, h) => {
+  const { newPassword } = request.payload;
+  const uid = request.auth.credentials.uid;
+
+  try {
+    // Update the user's password
+    await admin.auth().updateUser(uid, {
+      password: newPassword,
+    });
+
+    return h.response({ message: "Password updated successfully" }).code(200);
+  } catch (error) {
+    console.error("Error updating password:", error);
+    return h.response({ error: error.message }).code(500);
+  }
+};
+
+const refreshToken = async (request, h) => {
+  const { refreshToken } = request.payload;
+
+  try {
+    console.log(`Refreshing token with refreshToken: ${refreshToken}`); // Debug log
+    console.log(`Using API Key: ${firebaseConfig.apiKey}`); // Debug log to check apiKey
+
+    // Make a POST request to Firebase Auth REST API to refresh the token
+    const response = await axios.post(`https://securetoken.googleapis.com/v1/token?key=${firebaseConfig.apiKey}`, {
+      grant_type: 'refresh_token',
+      refresh_token: refreshToken
+    });
+
+    console.log('Firebase token refresh response:', response.data); // Log response data
+
+    const { id_token: accessToken, refresh_token: newRefreshToken } = response.data;
+
+    // Return the new ID token and refresh token
+    return h.response({ accessToken, refreshToken: newRefreshToken }).code(200);
+  } catch (error) {
+    console.error("Error refreshing token:", error);
+    return h.response({ error: "Invalid refresh token" }).code(401);
+  }
+};
+
+
+module.exports = { registerUser, loginUser, refreshToken, changePassword };
