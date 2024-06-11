@@ -21,7 +21,7 @@ const verifyToken = async (request, h) => {
 
   try {
     const decodedToken = await admin.auth().verifyIdToken(token);
-    request.auth = { uid: decodedToken.uid };
+    request.auth = { credentials: { uid: decodedToken.uid } };
     return h.continue;
   } catch (error) {
     if (error.code === 'auth/id-token-expired') {

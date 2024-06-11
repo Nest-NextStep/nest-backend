@@ -106,13 +106,30 @@ const loginUser = async (request, h) => {
   }
 };
 
+const changePassword = async (request, h) => {
+  const { newPassword } = request.payload;
+  const uid = request.auth.credentials.uid;
+
+  try {
+    // Update the user's password
+    await admin.auth().updateUser(uid, {
+      password: newPassword,
+    });
+
+    return h.response({ message: "Password updated successfully" }).code(200);
+  } catch (error) {
+    console.error("Error updating password:", error);
+    return h.response({ error: error.message }).code(500);
+  }
+};
+
 const refreshToken = async (request, h) => {
   const { refreshToken } = request.payload;
 
   try {
     console.log(`Refreshing token with refreshToken: ${refreshToken}`); // Debug log
     console.log(`Using API Key: ${firebaseConfig.apiKey}`); // Debug log to check apiKey
-    
+
     // Make a POST request to Firebase Auth REST API to refresh the token
     const response = await axios.post(`https://securetoken.googleapis.com/v1/token?key=${firebaseConfig.apiKey}`, {
       grant_type: 'refresh_token',
@@ -132,4 +149,4 @@ const refreshToken = async (request, h) => {
 };
 
 
-module.exports = { registerUser, loginUser, refreshToken };
+module.exports = { registerUser, loginUser, refreshToken, changePassword };
