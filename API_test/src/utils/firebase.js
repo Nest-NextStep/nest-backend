@@ -1,9 +1,9 @@
 // /src/utils/firebase.js
-const admin = require('firebase-admin');
-const firebase = require('firebase/app');
-require('firebase/auth');
+const admin = require("firebase-admin");
+const firebase = require("firebase/app");
+require("firebase/auth");
 
-const serviceAccount = require('../../nest-capstoneproject-b773f7925885.json'); // Path to your service account key
+const serviceAccount = require("../../nest-capstoneproject-b773f7925885.json"); // Path to your service account key
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

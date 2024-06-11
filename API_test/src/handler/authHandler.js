@@ -95,6 +95,7 @@ const loginUser = async (request, h) => {
           username,
           accessToken,
           recommendedMajor: result,
+          user,
         })
         .code(200);
     }

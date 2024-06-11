@@ -9,7 +9,8 @@ const getUserDataByUsername = async (request, h) => {
     const queryMajor = `SELECT m.major_name from major m 
       JOIN user_major um on um.major_major_id = m.major_id
       JOIN user_data u on u.user_id = um.user_user_id
-      where u.username = ?`;
+      where u.username = ?
+      LIMIT 2;`;
     const replacements = [username];
 
     const [profileResults, majorResult] = await Promise.all([

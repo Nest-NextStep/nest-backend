@@ -37,28 +37,9 @@ const getQNAByCategoryHandler = async (request, h) => {
     questionsData = questionResult[0];
     optionData = optionResult[0];
 
-    // Create a mapping of category options
-    const optionsMapping = optionData.reduce((acc, option) => {
-      if (!acc[option.category_id]) {
-        acc[option.category_id] = [];
-      }
-      acc[option.category_id].push({
-        option_code: option.option_code,
-        option_text: option.option_text,
-      });
-      return acc;
-    }, {});
-
-    // Add relevant options to each question
-    const enrichedQuestionsData = questionsData.map((question) => {
-      return {
-        ...question,
-        options: optionsMapping[question.category_id] || [],
-      };
-    });
-
     const responseObject = {
-      questionsData: enrichedQuestionsData,
+      questionsData,
+      optionData,
     };
 
     return h.response(responseObject).code(200);

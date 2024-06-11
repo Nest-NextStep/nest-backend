@@ -5,8 +5,7 @@ const CatalogHandler = require("../src/handler/catalogHandler");
 const ProfileHandler = require("../src/handler/profileHandler");
 const AssessmentHandler = require("../src/handler/assessmentHandler");
 const { Task } = require("./model/taskModel");
-const { verifyToken } = require('../src/utils/auth');
-
+const { verifyToken } = require("../src/utils/auth");
 
 const routes = [
   // AUTH HANDLER
@@ -58,7 +57,7 @@ const routes = [
   // POST NEW TASK
   {
     method: "POST",
-    path: "/task",
+    path: "/task/{username}",
     handler: TaskHandler.postTask,
     options: {
       pre: [{ method: verifyToken }],

@@ -74,8 +74,10 @@ const getTaskById = async (request, h) => {
 };
 
 // POST TASK
+// POST TASK
 const postTask = async (request, h) => {
   try {
+    const { username } = request.params;
     const date = new Date();
 
     const year = date.getFullYear();
@@ -97,10 +99,41 @@ const postTask = async (request, h) => {
       task_breakTime,
       task_priority,
       task_repeat,
-      user_user_id,
       isCompleted,
     } = request.payload;
 
+    // Retrieve user_id based on username
+    const userQuery = `SELECT user_id FROM user_data WHERE username = ?`;
+    const [userRecord] = await sequelize.query(userQuery, {
+      replacements: [username],
+      type: sequelize.QueryTypes.SELECT,
+    });
+
+    if (!userRecord || !userRecord.user_id) {
+      return h.response("User not found").code(404);
+    }
+
+    const { user_id } = userRecord;
+
+    // Construct the SQL query for inserting the task
+    const postTaskQuery = `
+      INSERT INTO task (
+        task_name,
+        task_date,
+        task_startTime,
+        task_endTime,
+        task_duration,
+        task_focusTime,
+        task_breakTime,
+        task_priority,
+        task_repeat,
+        user_user_id,
+        isCompleted,
+        createdAt
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    // Define replacements for the query
     const replacements = [
       task_name,
       task_date,
@@ -111,11 +144,14 @@ const postTask = async (request, h) => {
       task_breakTime,
       task_priority,
       task_repeat,
-      user_user_id,
-      false,
+      user_id,
+      isCompleted,
       formattedDateTime,
     ];
-    await sequelize.query(TaskQuery.postTask, { replacements });
+
+    // Execute the SQL query using Sequelize
+    await sequelize.query(postTaskQuery, { replacements });
+
     return h
       .response({ status: "success", message: "Task created successfully" })
       .code(201);
