@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 07, 2024 at 01:18 PM
+-- Generation Time: Jun 12, 2024 at 10:46 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -249,19 +249,20 @@ INSERT INTO `category_option` (`category_id`, `option_id`) VALUES
 CREATE TABLE `major` (
   `major_id` int(11) NOT NULL,
   `major_name` varchar(30) NOT NULL,
-  `major_description` varchar(1000) NOT NULL
+  `major_description` varchar(1000) NOT NULL,
+  `major_cover` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `major`
 --
 
-INSERT INTO `major` (`major_id`, `major_name`, `major_description`) VALUES
-(1, 'Teknik Informatika', 'Teknik Informatika merupakan bidang ilmu yang mempelajari bagaimana menggunakan teknologi komputer secara optimal guna menangani masalah transformasi atau pengolahan data dengan proses logika. Di Jurusan Teknik Informatika kamu akan mempelajari berbagai prinsip terkait ilmu komputer mulai dari proses perancangan, pengembangan, pengujian, hingga evaluasi sistem operasi perangkat lunak. Selama kuliah kamu akan banyak mengkaji pemrograman dan komputasi, dan dibekali pula dengan keterampilan merancang perangkat lunak.'),
-(2, 'Ilmu Hukum', 'Jurusan Ilmu Hukum adalah studi yang mempelajari berbagai sistem hukum yang berkaitan dengan kehidupan kemasyarakatan. Di Prodi Ilmu Hukum, mahasiswa juga belajar mengenai perundang-undangan termasuk di dalamnya hukum dasar (konstitusi, hukum perdata, hukum dagang, hukum tata negara, hukum pidana, hukum tata pidana) hingga hukum internasional dengan cakupan yang cukup luas. Pada akhir masa kuliah, biasanya mahasiswa jurusan ini dituntut untuk mengaplikasikan ilmu yang telah diperoleh selama kuliah melalui magang di berbagai firma hukum, lembaga pengadilan, dan juga kantor kejaksaan.'),
-(3, 'Psikologi', 'Jurusan Psikologi adalah salah satu bidang keilmuan yang mempelajari tentang manusia. Manusia yang dimaksud di sini tak sebatas pada perilakunya saja, melainkan mempelajari jiwa yang mempengaruhi tindakan tersebut. Misalnya pada konteks sosial, seperti mempelajari bagaimana manusia berinteraksi dengan lingkungannya, atau dalam konteks industri mempelajari bagaimana seseorang berperilaku terkait dengan posisinya di sebuah perusahaan.'),
-(4, 'Teknik Sipil', 'Teknik sipil adalah bidang ilmu yang mempelajari perencanaan/perancangan, manufaktur, manajemen/pengelolaan, dan konservasi dari beragam fasilitas dan sistem untuk mendukung sebuah kota, pedesaan, dan perkotaan. Artinya, seorang lulusan teknik sipil perlu menguasai ilmu terkait desain (saat melakukan perancangan), konsturksi (saat melakukan pembangunan dan menyusun sistem pengelolaan), hingga pemeliharaan lingkungan (saat melihat dampak pembangunan dari berbagai aspek).'),
-(5, 'Sistem Informasi', 'Jurusan Sistem Informasi adalah bidang keilmuan yang menggabungkan ilmu komputer dengan bisnis dan manajemen. Di prodi ini kamu akan belajar gimana mengidentifikasi kebutuhan dan proses bisnis perusahaan berdasarkan data-data yang dimiliki perusahan, kemudian merancang sistem yang sesuai dengan kebutuhan perusahaan.');
+INSERT INTO `major` (`major_id`, `major_name`, `major_description`, `major_cover`) VALUES
+(1, 'Teknik Informatika', 'Teknik Informatika merupakan bidang ilmu yang mempelajari bagaimana menggunakan teknologi komputer secara optimal guna menangani masalah transformasi atau pengolahan data dengan proses logika. Di Jurusan Teknik Informatika kamu akan mempelajari berbagai prinsip terkait ilmu komputer mulai dari proses perancangan, pengembangan, pengujian, hingga evaluasi sistem operasi perangkat lunak. Selama kuliah kamu akan banyak mengkaji pemrograman dan komputasi, dan dibekali pula dengan keterampilan merancang perangkat lunak.', 'https://storage.googleapis.com/major_asset/Teknik%20Informatika.png'),
+(2, 'Ilmu Hukum', 'Jurusan Ilmu Hukum adalah studi yang mempelajari berbagai sistem hukum yang berkaitan dengan kehidupan kemasyarakatan. Di Prodi Ilmu Hukum, mahasiswa juga belajar mengenai perundang-undangan termasuk di dalamnya hukum dasar (konstitusi, hukum perdata, hukum dagang, hukum tata negara, hukum pidana, hukum tata pidana) hingga hukum internasional dengan cakupan yang cukup luas. Pada akhir masa kuliah, biasanya mahasiswa jurusan ini dituntut untuk mengaplikasikan ilmu yang telah diperoleh selama kuliah melalui magang di berbagai firma hukum, lembaga pengadilan, dan juga kantor kejaksaan.', 'https://storage.googleapis.com/major_asset/hukum.png'),
+(3, 'Psikologi', 'Jurusan Psikologi adalah salah satu bidang keilmuan yang mempelajari tentang manusia. Manusia yang dimaksud di sini tak sebatas pada perilakunya saja, melainkan mempelajari jiwa yang mempengaruhi tindakan tersebut. Misalnya pada konteks sosial, seperti mempelajari bagaimana manusia berinteraksi dengan lingkungannya, atau dalam konteks industri mempelajari bagaimana seseorang berperilaku terkait dengan posisinya di sebuah perusahaan.', 'https://storage.googleapis.com/major_asset/Psikologi.png'),
+(4, 'Teknik Sipil', 'Teknik sipil adalah bidang ilmu yang mempelajari perencanaan/perancangan, manufaktur, manajemen/pengelolaan, dan konservasi dari beragam fasilitas dan sistem untuk mendukung sebuah kota, pedesaan, dan perkotaan. Artinya, seorang lulusan teknik sipil perlu menguasai ilmu terkait desain (saat melakukan perancangan), konsturksi (saat melakukan pembangunan dan menyusun sistem pengelolaan), hingga pemeliharaan lingkungan (saat melihat dampak pembangunan dari berbagai aspek).', 'https://storage.googleapis.com/major_asset/teknik%20sipil.png'),
+(5, 'Sistem Informasi', 'Jurusan Sistem Informasi adalah bidang keilmuan yang menggabungkan ilmu komputer dengan bisnis dan manajemen. Di prodi ini kamu akan belajar gimana mengidentifikasi kebutuhan dan proses bisnis perusahaan berdasarkan data-data yang dimiliki perusahan, kemudian merancang sistem yang sesuai dengan kebutuhan perusahaan.', 'https://storage.googleapis.com/major_asset/Teknik%20Informatika.png');
 
 -- --------------------------------------------------------
 
@@ -329,16 +330,18 @@ INSERT INTO `task` (`task_id`, `task_name`, `task_date`, `task_startTime`, `task
 (10, 'Client Call', '2024-06-01', '14:00:00', '15:00:00', 60, 55, 5, 'High', 0, 2, 1, '2024-06-05 07:34:47'),
 (11, 'Study Algebra', '2024-06-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 1, '2024-05-31 15:17:15'),
 (13, 'Study Science', '2024-06-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 0, '2024-05-31 22:16:35'),
-(14, 'Study Geo', '2024-06-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 1, '2024-06-01 07:53:41'),
-(15, 'Study Physics', '2024-06-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 0, '2024-06-05 07:33:18'),
+(15, 'Study Physics', '2024-06-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 1, '2024-06-10 07:17:25'),
 (16, 'Study Advanced history', '2024-06-02', '07:00:00', '08:00:00', 60, 20, 10, 'medium', 1, 2, 0, '2024-06-05 07:33:07'),
 (17, 'History Assigment', '2024-06-13', '12:30:00', '13:00:00', 30, 0, 30, 'Low', 0, 3, 0, '2024-05-31 07:48:24'),
 (18, 'Student Council Meeting', '2024-06-20', '14:00:00', '15:00:00', 60, 55, 5, 'High', 0, 2, 0, '2024-05-31 07:48:24'),
-(19, 'Java Language Exam', '2024-07-06', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 0, '2024-06-05 07:32:50'),
+(19, 'Java Language Exam', '2024-07-06', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 1, '2024-06-12 08:07:43'),
 (20, 'Study Java Advanced', '2024-07-11', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 0, '2024-05-31 15:16:35'),
 (21, 'Study German Language', '2024-08-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 0, '2024-05-31 15:16:50'),
 (22, 'Study Math Logaritmic', '2024-08-09', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 0, '2024-06-05 07:32:58'),
-(23, 'Study Physics', '2024-06-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 0, '2024-06-05 14:34:39');
+(23, 'Study Physics', '2024-06-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 0, '2024-06-05 14:34:39'),
+(24, 'Study Physics', '2024-06-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 0, '2024-06-10 14:16:40'),
+(25, 'Study Mathematics', '2024-06-15', '08:00:00', '10:00:00', 120, 90, 30, 'Medium', 0, 2, 0, '2024-06-15 02:00:00'),
+(26, 'Study Physics', '2024-06-01', '07:00:00', '08:00:00', 60, 20, 10, 'low', 1, 2, 0, '2024-06-10 14:59:00');
 
 -- --------------------------------------------------------
 
@@ -352,29 +355,30 @@ CREATE TABLE `university` (
   `university_location` varchar(30) NOT NULL,
   `university_acreditation` char(1) NOT NULL,
   `university_link` varchar(500) NOT NULL,
-  `major_major_id` int(11) NOT NULL
+  `major_major_id` int(11) NOT NULL,
+  `university_image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `university`
 --
 
-INSERT INTO `university` (`university_id`, `university_name`, `university_location`, `university_acreditation`, `university_link`, `major_major_id`) VALUES
-(1, 'Institut Teknologi Sepuluh Nopember', 'Surabaya, Jawa Timur', 'A', 'https://www.its.ac.id/informatika/id/akademik/program-studi/', 1),
-(2, 'Universitas Indonesia', 'Depok, Jawa Barat', 'A', 'https://www.ui.ac.id/program-studi/sarjana-ilmu-komputer/', 1),
-(3, 'Universitas Telkom Surabaya', 'Surabaya, Jawa Timur', 'A', 'https://bif-sby.telkomuniversity.ac.id/', 1),
-(4, 'Universitas Airlangga', 'Surabaya, Jawa Timur', 'A', 'https://fh.unair.ac.id/en/home/', 2),
-(5, 'Universitas Indonesia', 'Depok, Jawa Barat', 'A', 'https://law.ui.ac.id/', 2),
-(6, 'Universitas Gadjah Mada', 'Yogyakarta, Yogyakarta', 'A', 'https://law.ugm.ac.id/', 2),
-(7, 'Universitas Indonesia', 'Depok, Jawa Barat', 'A', 'https://psikologi.ui.ac.id/', 3),
-(8, 'Universitas Airlangga', 'Surabaya, Jawa Timur', 'A', 'https://psikologi.unair.ac.id/en_US/', 3),
-(9, 'Universitas Gadjah Mada', 'Yogyakarta, Yogyakarta', 'A', 'https://ugm.ac.id/id/fakultas/fakultas-psikologi/', 3),
-(10, 'Universitas Sebelas Maret', 'Surakarta, Jawa Tengah', 'A', 'https://sipil.ft.uns.ac.id/', 4),
-(11, 'Universitas Udayana', 'Denpasar, Bali', 'A', 'https://sipil.unud.ac.id/', 4),
-(12, 'Universitas Gadjah Mada', 'Yogyakarta, Yogyakarta', 'A', 'https://tsipil.ugm.ac.id/en/home-eng/', 4),
-(13, 'Institut Teknologi Sepuluh Nopember', 'Surabaya, Jawa Timur', 'A', 'https://www.its.ac.id/si/en/home/', 5),
-(14, 'Universitas Indonesia', 'Depok, Jawa Barat', 'A', 'https://www.ui.ac.id/program-studi/sarjana-sistem-informasi/', 5),
-(15, 'Universitas Telkom Surabaya', 'Surabaya, Jawa Timur', 'A', 'https://bis-sby.telkomuniversity.ac.id/', 5);
+INSERT INTO `university` (`university_id`, `university_name`, `university_location`, `university_acreditation`, `university_link`, `major_major_id`, `university_image`) VALUES
+(1, 'Institut Teknologi Sepuluh Nopember', 'Surabaya, Jawa Timur', 'A', 'https://www.its.ac.id/informatika/id/akademik/program-studi/', 1, 'https://storage.googleapis.com/major_asset/image%2030.png'),
+(2, 'Universitas Indonesia', 'Depok, Jawa Barat', 'A', 'https://www.ui.ac.id/program-studi/sarjana-ilmu-komputer/', 1, 'https://storage.googleapis.com/major_asset/image%2030.png\r\n'),
+(3, 'Universitas Telkom Surabaya', 'Surabaya, Jawa Timur', 'A', 'https://bif-sby.telkomuniversity.ac.id/', 1, 'https://storage.googleapis.com/major_asset/image%2030.png'),
+(4, 'Universitas Airlangga', 'Surabaya, Jawa Timur', 'A', 'https://fh.unair.ac.id/en/home/', 2, 'https://storage.googleapis.com/major_asset/image%2030.png'),
+(5, 'Universitas Indonesia', 'Depok, Jawa Barat', 'A', 'https://law.ui.ac.id/', 2, 'https://storage.googleapis.com/major_asset/image%2030.png'),
+(6, 'Universitas Gadjah Mada', 'Yogyakarta, Yogyakarta', 'A', 'https://law.ugm.ac.id/', 2, 'https://storage.googleapis.com/major_asset/image%2030.png'),
+(7, 'Universitas Indonesia', 'Depok, Jawa Barat', 'A', 'https://psikologi.ui.ac.id/', 3, 'https://storage.googleapis.com/major_asset/image%2030.png'),
+(8, 'Universitas Airlangga', 'Surabaya, Jawa Timur', 'A', 'https://psikologi.unair.ac.id/en_US/', 3, 'https://storage.googleapis.com/major_asset/image%2030.png'),
+(9, 'Universitas Gadjah Mada', 'Yogyakarta, Yogyakarta', 'A', 'https://ugm.ac.id/id/fakultas/fakultas-psikologi/', 3, 'https://storage.googleapis.com/major_asset/image%2030.png'),
+(10, 'Universitas Sebelas Maret', 'Surakarta, Jawa Tengah', 'A', 'https://sipil.ft.uns.ac.id/', 4, 'https://storage.googleapis.com/major_asset/image%2030.png'),
+(11, 'Universitas Udayana', 'Denpasar, Bali', 'A', 'https://sipil.unud.ac.id/', 4, 'https://storage.googleapis.com/major_asset/image%2030.png'),
+(12, 'Universitas Gadjah Mada', 'Yogyakarta, Yogyakarta', 'A', 'https://tsipil.ugm.ac.id/en/home-eng/', 4, 'https://storage.googleapis.com/major_asset/image%2030.png'),
+(13, 'Institut Teknologi Sepuluh Nopember', 'Surabaya, Jawa Timur', 'A', 'https://www.its.ac.id/si/en/home/', 5, 'https://storage.googleapis.com/major_asset/image%2030.png'),
+(14, 'Universitas Indonesia', 'Depok, Jawa Barat', 'A', 'https://www.ui.ac.id/program-studi/sarjana-sistem-informasi/', 5, 'https://storage.googleapis.com/major_asset/image%2030.png'),
+(15, 'Universitas Telkom Surabaya', 'Surabaya, Jawa Timur', 'A', 'https://bis-sby.telkomuniversity.ac.id/', 5, 'https://storage.googleapis.com/major_asset/image%2030.png');
 
 -- --------------------------------------------------------
 
@@ -407,7 +411,9 @@ INSERT INTO `user_data` (`user_id`, `username`, `user_fullname`, `user_birthDate
 (8, 'janesmith', 'Jane Smith', '1992-02-02', 'SMA Negeri 2', 0, 1, 'Islam'),
 (9, 'mikebrown', 'Mike Brown', '1985-03-03', 'SMA Negeri 3', 1, 0, 'Ateis'),
 (10, 'alicejohnson', 'Alice Johnson', '1988-04-04', ' SMA Negeri 4', 0, 0, 'Budha'),
-(11, 'bobwhite', 'Bob White', '1995-05-05', 'SMA Negeri 5', 1, 1, 'Hindu');
+(11, 'bobwhite', 'Bob White', '1995-05-05', 'SMA Negeri 5', 1, 1, 'Hindu'),
+(14, 'wowwwfer', NULL, NULL, NULL, NULL, NULL, NULL),
+(16, 'yudisthira', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -417,20 +423,22 @@ INSERT INTO `user_data` (`user_id`, `username`, `user_fullname`, `user_birthDate
 
 CREATE TABLE `user_major` (
   `user_user_id` int(11) NOT NULL,
-  `major_major_id` int(11) NOT NULL
+  `major_major_id` int(11) NOT NULL,
+  `user_major_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user_major`
 --
 
-INSERT INTO `user_major` (`user_user_id`, `major_major_id`) VALUES
-(2, 4),
-(3, 1),
-(4, 2),
-(5, 3),
-(6, 5),
-(7, 1);
+INSERT INTO `user_major` (`user_user_id`, `major_major_id`, `user_major_date`) VALUES
+(2, 1, '2024-06-29'),
+(2, 4, '2024-06-12'),
+(4, 2, '2024-06-26'),
+(5, 3, '2024-06-29'),
+(6, 5, '2024-07-11'),
+(7, 1, '2024-07-23'),
+(14, 2, '2024-06-30');
 
 --
 -- Indexes for dumped tables
@@ -535,7 +543,7 @@ ALTER TABLE `potential_jobs`
 -- AUTO_INCREMENT for table `task`
 --
 ALTER TABLE `task`
-  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `university`
@@ -547,7 +555,7 @@ ALTER TABLE `university`
 -- AUTO_INCREMENT for table `user_data`
 --
 ALTER TABLE `user_data`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables

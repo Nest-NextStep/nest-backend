@@ -3,11 +3,16 @@
 const { Sequelize } = require("sequelize");
 require("dotenv").config();
 
-const sequelize = new Sequelize("nest_capstone", "root", null, {
-  host: "localhost",
-  port: 3306,
-  dialect: "mysql",
-});
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  null,
+  {
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    dialect: "mysql",
+  }
+);
 
 const connect = async () => {
   try {

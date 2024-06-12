@@ -1,37 +1,15 @@
 const { sequelize } = require("../utils/database");
+const AssessmentQuery = require("../queries/assessmentQueries");
+const axios = require("axios");
 
 const getQNAByCategoryHandler = async (request, h) => {
   try {
     const { category } = request.params;
-    let query = `
-        select 
-            q.question_id,
-            q.question_text
-        from 
-            assessment_question q 
-        JOIN 
-            assessment_category c on c.category_id = q.assessment_category_category_id
-        where 
-            c.category_name = ?
-        `;
-
-    let query_options = `
-        select 
-            o.option_code, 
-            o.option_text 
-        from 
-            assessment_option o
-        join 
-            category_option co on co.option_id = o.option_id
-        join 
-            assessment_category c on c.category_id = co.category_id
-        where 
-            c.category_name = ?`;
-
     const replacements = [category];
+
     const [questionResult, optionResult] = await Promise.all([
-      sequelize.query(query, { replacements }),
-      sequelize.query(query_options, { replacements }),
+      sequelize.query(AssessmentQuery.getQuestionQuery, { replacements }),
+      sequelize.query(AssessmentQuery.getOptionQuery, { replacements }),
     ]);
 
     questionsData = questionResult[0];
@@ -52,39 +30,183 @@ const getQNAByCategoryHandler = async (request, h) => {
 const getAssessmentDataHandler = async (request, h) => {
   try {
     const { username } = request.params;
-    let query = `	select m.major_name, um.user_major_date from user_major um
-    join user_data u on u.user_id = um.user_user_id
-    join major m on m.major_id = um.major_major_id
-    WHERE u.username = ?
-    ORDER BY um.user_major_date ASC`;
-
     const replacements = [username];
-    const [result] = await sequelize.query(query, { replacements });
+
+    const [result] = await sequelize.query(
+      AssessmentQuery.getAssessmentDataQuery,
+      { replacements }
+    );
     return h.response(result).code(200);
   } catch (error) {
     return error;
   }
 };
 
-const getAssessmentResultHandler = async (request, h) => {
+const predictMajorHandler = async (request, h) => {
   try {
     const { username } = request.params;
-    let query = `select m.major_name, m.major_description from user_major um
-    join user_data u on u.user_id = um.user_user_id
-    join major m on m.major_id = um.major_major_id
-    WHERE u.username = ?`;
+    const {
+      R1,
+      R2,
+      R4,
+      R6,
+      R7,
+      R8,
+      I1,
+      I2,
+      I4,
+      I5,
+      I7,
+      I8,
+      A2,
+      A3,
+      A4,
+      A5,
+      A6,
+      A8,
+      S1,
+      S3,
+      S5,
+      S6,
+      S7,
+      S8,
+      E1,
+      E3,
+      E4,
+      E5,
+      E7,
+      E8,
+      C2,
+      C3,
+      C5,
+      C6,
+      C7,
+      C8,
+      TIPI1,
+      TIPI2,
+      TIPI3,
+      TIPI4,
+      TIPI5,
+      TIPI6,
+      TIPI7,
+      TIPI8,
+      TIPI9,
+      TIPI10,
+      VCL1,
+      VCL2,
+      VCL3,
+      VCL4,
+      VCL5,
+      VCL6,
+      VCL7,
+      VCL8,
+      VCL9,
+      VCL10,
+      VCL11,
+      VCL12,
+      VCL13,
+      VCL14,
+      VCL15,
+      education,
+      gender,
+      engnat,
+      religion,
+      voted,
+    } = request.payload;
 
-    const replacements = [username];
-    const [result] = await sequelize.query(query, { replacements });
-    console.log(result);
+    const data = {
+      R1,
+      R2,
+      R4,
+      R6,
+      R7,
+      R8,
+      I1,
+      I2,
+      I4,
+      I5,
+      I7,
+      I8,
+      A2,
+      A3,
+      A4,
+      A5,
+      A6,
+      A8,
+      S1,
+      S3,
+      S5,
+      S6,
+      S7,
+      S8,
+      E1,
+      E3,
+      E4,
+      E5,
+      E7,
+      E8,
+      C2,
+      C3,
+      C5,
+      C6,
+      C7,
+      C8,
+      TIPI1,
+      TIPI2,
+      TIPI3,
+      TIPI4,
+      TIPI5,
+      TIPI6,
+      TIPI7,
+      TIPI8,
+      TIPI9,
+      TIPI10,
+      VCL1,
+      VCL2,
+      VCL3,
+      VCL4,
+      VCL5,
+      VCL6,
+      VCL7,
+      VCL8,
+      VCL9,
+      VCL10,
+      VCL11,
+      VCL12,
+      VCL13,
+      VCL14,
+      VCL15,
+      education,
+      gender,
+      engnat,
+      religion,
+      voted,
+    };
+
+    const predictAPI =
+      "https://nest-backend-model-yo7utis4aa-et.a.run.app/predict";
+    const response = await axios.post(predictAPI, data);
+
+    const predictedMajor = response.data.prediction[0];
+    const capitalizedMajor =
+      predictedMajor[0].toUpperCase() + predictedMajor.slice(1);
+    const replacements = [capitalizedMajor, username];
+
+    const [result] = await sequelize.query(
+      AssessmentQuery.getAssessmentResultDataQuery,
+      { replacements }
+    );
+
+    await sequelize.query(AssessmentQuery.postResultQuery, { replacements });
+
     return h.response(result[0]).code(200);
   } catch (error) {
-    return error;
+    return h.response(error.message).code(500);
   }
 };
 
 module.exports = {
   getQNAByCategoryHandler,
-  getAssessmentResultHandler,
   getAssessmentDataHandler,
+  predictMajorHandler,
 };

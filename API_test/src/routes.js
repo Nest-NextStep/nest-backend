@@ -160,9 +160,9 @@ const routes = [
     },
   },
   {
-    method: "GET",
+    method: "POST",
     path: "/assessment/result/{username}",
-    handler: AssessmentHandler.getAssessmentResultHandler,
+    handler: AssessmentHandler.predictMajorHandler,
     options: {
       pre: [{ method: verifyToken }],
     },

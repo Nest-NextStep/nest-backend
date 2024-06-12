@@ -1,21 +1,14 @@
 const { sequelize } = require("../utils/database");
+const ProfileQuery = require("../queries/profileQueries");
 
 const getUserDataByUsername = async (request, h) => {
   try {
-    // BELOM ADA DATA PROFILE URL, PASSWORD, email
     const { username } = request.params;
-    var query = ` SELECT *, TIMESTAMPDIFF(YEAR, user_birthDate, CURDATE()) AS age from user_data u where u.username = ?`;
-
-    const queryMajor = `SELECT m.major_name from major m 
-      JOIN user_major um on um.major_major_id = m.major_id
-      JOIN user_data u on u.user_id = um.user_user_id
-      where u.username = ?
-      LIMIT 2;`;
     const replacements = [username];
 
     const [profileResults, majorResult] = await Promise.all([
-      sequelize.query(query, { replacements }),
-      sequelize.query(queryMajor, { replacements }),
+      sequelize.query(ProfileQuery.getUserDataQuery, { replacements }),
+      sequelize.query(ProfileQuery.getMajorQuery, { replacements }),
     ]);
 
     profileData = profileResults[0][0];
@@ -55,17 +48,10 @@ const updateUserByUsernameHandler = async (request, h) => {
       username,
     ];
 
-    let query = `UPDATE user_data
-    SET user_fullName = ?,
-    user_birthDate = ?,
-    user_school = ?,
-    user_gender = ?,
-    user_engNat = ?,
-    user_religion = ?
-    WHERE username = ?;`;
+    const [result] = await sequelize.query(ProfileQuery.updateProfileQuery, {
+      replacements,
+    });
 
-    const [result] = await sequelize.query(query, { replacements });
-    console.log(result);
     return h
       .response({
         status: "success",

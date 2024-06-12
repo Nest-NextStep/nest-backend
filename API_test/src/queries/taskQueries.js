@@ -62,7 +62,7 @@ const taskDetail = `
         task t 
 `;
 
-const postTask = `
+const postTaskQuery = `
       INSERT INTO task (
         task_name,
         task_date,
@@ -76,8 +76,8 @@ const postTask = `
         user_user_id,
         isCompleted,
         createdAt
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)
-`;
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
 
 const updateTask = `
       UPDATE task
@@ -134,14 +134,17 @@ const updateTaskToComplete = `
         task.task_id = ? 
 `;
 
+const userQuery = `SELECT user_id FROM user_data WHERE username = ?`;
+
 module.exports = {
   completedTaskCount,
   completedTaskList,
   deleteTask,
   updateTask,
-  postTask,
+  postTaskQuery,
   taskDetail,
   totalTaskCount,
   uncompletedTaskList,
   updateTaskToComplete,
+  userQuery,
 };
