@@ -1,0 +1,299 @@
+const { sequelize } = require("../utils/database");
+const { Task } = require("../model/taskModel");
+const TaskQuery = require("../queries/taskQueries");
+
+//Get All Task Available
+const getAllTasks = async (request, h) => {
+  try {
+    const [results, metadata] = await sequelize.query("SELECT * FROM task");
+    return h.response(results).code(200);
+  } catch (error) {
+    console.error(error);
+    return h.response("Failed to retrieve users").code(500);
+  }
+};
+
+// Get All Task Based on Username
+const getAllTaskByUsername = async (request, h) => {
+  try {
+    let { username } = request.params;
+    const replacements = [username];
+
+    // Execute all queries concurrently
+    const [tasksResult, [completedCountResult], [totalCountResult]] =
+      await Promise.all([
+        sequelize.query(TaskQuery.uncompletedTaskList, { replacements }),
+        sequelize.query(TaskQuery.completedTaskCount, { replacements }),
+        sequelize.query(TaskQuery.totalTaskCount, { replacements }),
+      ]);
+
+    // Extract data from results
+    const tasks = tasksResult[0];
+    const completedCount = completedCountResult[0].completedCount;
+    const totalCount = totalCountResult[0].totalCount;
+
+    // Construct response object
+    const responseObject = {
+      tasks,
+      completedCount,
+      totalCount,
+    };
+
+    return h.response(responseObject).code(200);
+  } catch (error) {
+    console.error(error);
+    return h.response("Failed to retrieve tasks").code(500);
+  }
+};
+
+//GET TASK BY ID
+const getTaskById = async (request, h) => {
+  try {
+    let { id } = request.params;
+    id_parsed = parseInt(id);
+
+    const replacements = [];
+
+    // Check if id is provided and add WHERE clause
+    if (id) {
+      TaskQuery.taskDetail += " WHERE t.task_id = ?";
+      replacements.push(id_parsed);
+    }
+
+    const [results, metadata] = await sequelize.query(TaskQuery.taskDetail, {
+      replacements,
+    });
+
+    console.log(id);
+
+    return h.response(results).code(200);
+  } catch (error) {
+    console.error(error);
+    return h.response("Failed to retrieve tasks").code(500);
+  }
+};
+
+// POST TASK
+// POST TASK
+const postTask = async (request, h) => {
+  try {
+    const { username } = request.params;
+    const date = new Date();
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-based, so add 1
+    const day = String(date.getDate()).padStart(2, "0");
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const seconds = String(date.getSeconds()).padStart(2, "0");
+
+    const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+    const {
+      task_name,
+      task_date,
+      task_startTime,
+      task_endTime,
+      task_duration,
+      task_focusTime,
+      task_breakTime,
+      task_priority,
+      task_repeat,
+      isCompleted,
+    } = request.payload;
+
+    // Retrieve user_id based on username
+    const userQuery = `SELECT user_id FROM user_data WHERE username = ?`;
+    const [userRecord] = await sequelize.query(userQuery, {
+      replacements: [username],
+      type: sequelize.QueryTypes.SELECT,
+    });
+
+    if (!userRecord || !userRecord.user_id) {
+      return h.response("User not found").code(404);
+    }
+
+    const { user_id } = userRecord;
+
+    // Construct the SQL query for inserting the task
+    const postTaskQuery = `
+      INSERT INTO task (
+        task_name,
+        task_date,
+        task_startTime,
+        task_endTime,
+        task_duration,
+        task_focusTime,
+        task_breakTime,
+        task_priority,
+        task_repeat,
+        user_user_id,
+        isCompleted,
+        createdAt
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    // Define replacements for the query
+    const replacements = [
+      task_name,
+      task_date,
+      task_startTime,
+      task_endTime,
+      task_duration,
+      task_focusTime,
+      task_breakTime,
+      task_priority,
+      task_repeat,
+      user_id,
+      isCompleted,
+      formattedDateTime,
+    ];
+
+    // Execute the SQL query using Sequelize
+    await sequelize.query(postTaskQuery, { replacements });
+
+    return h
+      .response({ status: "success", message: "Task created successfully" })
+      .code(201);
+  } catch (error) {
+    console.error(error);
+    return h.response("Failed to create task").code(500);
+  }
+};
+
+// EDIT TASK
+const editTask = async (request, h) => {
+  try {
+    const { id } = request.params;
+    const {
+      task_name,
+      task_date,
+      task_startTime,
+      task_endTime,
+      task_duration,
+      task_focusTime,
+      task_breakTime,
+      task_priority,
+      task_repeat,
+      isCompleted,
+    } = request.payload;
+
+    const replacements = [
+      task_name,
+      task_date,
+      task_startTime,
+      task_endTime,
+      task_duration,
+      task_focusTime,
+      task_breakTime,
+      task_priority,
+      task_repeat,
+      isCompleted,
+      id,
+    ];
+
+    const [result] = await sequelize.query(TaskQuery.updateTask, {
+      replacements,
+    });
+
+    // Check if any rows were affected (task was found and updated)
+    if (result.affectedRows === 0) {
+      return h
+        .response({ status: "fail", message: "Task not found" })
+        .code(404);
+    }
+
+    return h
+      .response({ status: "success", message: "Task updated successfully" })
+      .code(200);
+  } catch (error) {
+    console.error(error);
+    return h.response("Failed to update task").code(500);
+  }
+};
+
+// DELETE TASK
+const deleteTask = async (request, h) => {
+  try {
+    const { id } = request.params;
+
+    const replacements = [id];
+
+    const [result] = await sequelize.query(TaskQuery.deleteTask, {
+      replacements,
+    });
+
+    // Check if any rows were affected (task was found and deleted)
+    if (result.affectedRows === 0) {
+      return h
+        .response({ status: "fail", message: "Task not found" })
+        .code(404);
+    }
+
+    return h
+      .response({ status: "success", message: "Task deleted successfully" })
+      .code(200);
+  } catch (error) {
+    console.error(error);
+    return h.response("Failed to delete task").code(500);
+  }
+};
+
+// GET ALL COMPLETED TASK
+const getAllCompletedTask = async (request, h) => {
+  try {
+    let { username } = request.params;
+
+    const replacements = [username];
+
+    // Execute all queries concurrently
+    const [tasksResult] = await Promise.all([
+      sequelize.query(TaskQuery.completedTaskList, { replacements }),
+    ]);
+
+    // Extract data from results
+    const tasks = tasksResult[0];
+
+    return h.response(tasks).code(200);
+  } catch (error) {
+    console.error(error);
+    return h.response("Failed to retrieve tasks").code(500);
+  }
+};
+
+// UPDATE TASK TO COMPLETED
+const updateTaskToCompleteHandler = async (request, h) => {
+  try {
+    const { id } = request.params;
+    id_parsed = parseInt(id);
+    const replacements = [id_parsed];
+
+    const [result] = await sequelize.query(TaskQuery.updateTaskToComplete, {
+      replacements,
+    });
+
+    // Check if any rows were affected (task was found and updated)
+    if (result.affectedRows === 0) {
+      return h
+        .response({ status: "fail", message: "Task not found" })
+        .code(404);
+    }
+    return h
+      .response({ status: "success", message: "Task updated successfully" })
+      .code(200);
+  } catch (error) {
+    console.log(error);
+    return h.response("Failed to update task").code(500);
+  }
+};
+
+module.exports = {
+  getAllTaskByUsername,
+  getAllCompletedTask,
+  getAllTasks,
+  getTaskById,
+  postTask,
+  editTask,
+  deleteTask,
+  updateTaskToCompleteHandler,
+};
