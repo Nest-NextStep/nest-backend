@@ -11,7 +11,9 @@ const updateProfileQuery = `UPDATE user_data
     user_school = ?,
     user_gender = ?,
     user_engNat = ?,
-    user_religion = ?
+    user_religion = ?,
+    user_education = ?,
+    user_voted = ?
     WHERE username = ?;
 `;
 

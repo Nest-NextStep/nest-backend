@@ -1,6 +1,7 @@
 const { sequelize } = require("../utils/database");
 const AssessmentQuery = require("../queries/assessmentQueries");
 const axios = require("axios");
+require("dotenv").config();
 
 const getQNAByCategoryHandler = async (request, h) => {
   try {
@@ -76,10 +77,10 @@ const predictMajorHandler = async (request, h) => {
       E5,
       E7,
       E8,
+      C1,
       C2,
       C3,
       C5,
-      C6,
       C7,
       C8,
       TIPI1,
@@ -98,21 +99,43 @@ const predictMajorHandler = async (request, h) => {
       VCL4,
       VCL5,
       VCL6,
-      VCL7,
-      VCL8,
-      VCL9,
       VCL10,
       VCL11,
       VCL12,
       VCL13,
       VCL14,
       VCL15,
-      education,
-      gender,
-      engnat,
-      religion,
-      voted,
     } = request.payload;
+
+    let query = `SELECT * from user_data where username = ?`;
+
+    const [results] = await sequelize.query(query, {
+      replacements: [username],
+    });
+
+    let queryGetValue = `select option_value from profileOption where option_text = ?;`;
+
+    const [result_education] = await sequelize.query(queryGetValue, {
+      replacements: [results[0].user_education],
+    });
+    const [result_gender] = await sequelize.query(queryGetValue, {
+      replacements: [results[0].user_gender],
+    });
+    const [result_engnat] = await sequelize.query(queryGetValue, {
+      replacements: [results[0].user_engNat],
+    });
+    const [result_religion] = await sequelize.query(queryGetValue, {
+      replacements: [results[0].user_religion],
+    });
+    const [result_voted] = await sequelize.query(queryGetValue, {
+      replacements: [results[0].user_voted],
+    });
+
+    let education = result_education[0].option_value;
+    let gender = result_gender[0].option_value;
+    let engnat = result_engnat[0].option_value;
+    let religion = result_religion[0].option_value;
+    let voted = result_voted[0].option_value;
 
     const data = {
       R1,
@@ -145,10 +168,10 @@ const predictMajorHandler = async (request, h) => {
       E5,
       E7,
       E8,
+      C1,
       C2,
       C3,
       C5,
-      C6,
       C7,
       C8,
       TIPI1,
@@ -167,9 +190,6 @@ const predictMajorHandler = async (request, h) => {
       VCL4,
       VCL5,
       VCL6,
-      VCL7,
-      VCL8,
-      VCL9,
       VCL10,
       VCL11,
       VCL12,
@@ -183,8 +203,7 @@ const predictMajorHandler = async (request, h) => {
       voted,
     };
 
-    const predictAPI =
-      "https://nest-backend-model-yo7utis4aa-et.a.run.app/predict";
+    const predictAPI = process.env.PREDICT_API_URL;
     const response = await axios.post(predictAPI, data);
 
     const predictedMajor = response.data.prediction[0];

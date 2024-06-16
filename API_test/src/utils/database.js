@@ -6,13 +6,19 @@ require("dotenv").config();
 const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
-  null,
+  process.env.DB_PASSWORD,
   {
     host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
+    // port: process.env.DB_PORT,
     dialect: "mysql",
   }
 );
+
+// const sequelize = new Sequelize("nest_capstone", "root", null, {
+//   host: "localhost",
+//   port: 3306,
+//   dialect: "mysql",
+// });
 
 const connect = async () => {
   try {

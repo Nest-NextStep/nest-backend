@@ -36,6 +36,8 @@ const updateUserByUsernameHandler = async (request, h) => {
       user_gender,
       user_engNat,
       user_religion,
+      user_education,
+      user_voted,
     } = request.payload;
 
     const replacements = [
@@ -45,6 +47,8 @@ const updateUserByUsernameHandler = async (request, h) => {
       user_gender,
       user_engNat,
       user_religion,
+      user_education,
+      user_voted,
       username,
     ];
 
@@ -63,5 +67,46 @@ const updateUserByUsernameHandler = async (request, h) => {
     return h.response("Failed to retrieve user data").code(500);
   }
 };
+const getProfileOptionHandler = async (request, h) => {
+  try {
+    let query = `
+      SELECT q.profile_id, q.profile_question, o.option_value, o.option_text
+      FROM profileQuestion q
+      JOIN profileOption o ON q.profile_id = o.profile_id
+      ORDER BY q.profile_id, o.option_id;
+    `;
 
-module.exports = { getUserDataByUsername, updateUserByUsernameHandler };
+    const [result] = await sequelize.query(query);
+
+    // Process the result to map questions to their options
+    const mappedResult = {};
+    result.forEach((row) => {
+      const { profile_id, profile_question, option_value, option_text } = row;
+      if (!mappedResult[profile_id]) {
+        mappedResult[profile_id] = {
+          question_id: profile_id,
+          profile_question: profile_question,
+          options: [],
+        };
+      }
+      mappedResult[profile_id].options.push({
+        option_value: option_value,
+        option_text: option_text,
+      });
+    });
+
+    // Convert the mapped result to the desired format (e.g., an array of objects)
+    const response = Object.values(mappedResult);
+
+    return h.response(response).code(200); // Use 200 for successful response
+  } catch (error) {
+    console.error(error);
+    return h.response({ error: "Internal Server Error" }).code(500);
+  }
+};
+
+module.exports = {
+  getUserDataByUsername,
+  updateUserByUsernameHandler,
+  getProfileOptionHandler,
+};

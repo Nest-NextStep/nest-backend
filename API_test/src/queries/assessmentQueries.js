@@ -30,7 +30,7 @@ const getAssessmentDataQuery = `	select m.major_name, um.user_major_date from us
 
 const getAssessmentResultDataQuery = `select m.major_name, m.major_description from major m where m.major_name = ?`;
 
-const postResultQuery = `INSERT INTO user_major (major_major_id, user_user_id, user_major_date)
+const postResultQuery = `INSERT IGNORE INTO user_major (major_major_id, user_user_id, user_major_date)
     SELECT m.major_id, u.user_id, CURDATE() as user_major_date
     FROM user_data u
     JOIN major m ON m.major_name = ? AND u.username = ?

@@ -149,6 +149,14 @@ const routes = [
       pre: [{ method: verifyToken }],
     },
   },
+  {
+    method: "GET",
+    path: "/profile/updatePage",
+    handler: ProfileHandler.getProfileOptionHandler,
+    options: {
+      pre: [{ method: verifyToken }],
+    },
+  },
 
   //assessment Handler
   {
