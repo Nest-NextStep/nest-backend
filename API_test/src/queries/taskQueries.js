@@ -60,6 +60,8 @@ const taskDetail = `
         t.task_repeat
       FROM 
         task t 
+      WHERE 
+      t.task_id = ?
 `;
 
 const postTaskQuery = `
@@ -134,6 +136,15 @@ const updateTaskToComplete = `
         task.task_id = ? 
 `;
 
+const updateTaskToNotComplete = `
+      UPDATE 
+        task 
+      SET 
+        task.isCompleted = false 
+      WHERE
+        task.task_id = ? 
+`;
+
 const userQuery = `SELECT user_id FROM user_data WHERE username = ?`;
 
 module.exports = {
@@ -146,5 +157,6 @@ module.exports = {
   totalTaskCount,
   uncompletedTaskList,
   updateTaskToComplete,
+  updateTaskToNotComplete,
   userQuery,
 };

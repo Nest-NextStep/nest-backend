@@ -19,6 +19,7 @@ const query_majorDetail = " SELECT * FROM major m WHERE m.major_id = ?";
 // GET UNI LIST
 const query_uni = `
      SELECT 
+        u.university_image,
         u.university_id,
         u.university_name,
         u.university_location,

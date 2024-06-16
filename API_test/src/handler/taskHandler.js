@@ -1,6 +1,7 @@
 const { sequelize } = require("../utils/database");
 const { Task } = require("../model/taskModel");
 const TaskQuery = require("../queries/taskQueries");
+const { messaging } = require("firebase-admin");
 
 //Get All Task Available
 const getAllTasks = async (request, h) => {
@@ -49,17 +50,10 @@ const getTaskById = async (request, h) => {
     let { id } = request.params;
     id_parsed = parseInt(id);
 
-    const replacements = [];
-
-    if (id) {
-      TaskQuery.taskDetail += " WHERE t.task_id = ?";
-      replacements.push(id_parsed);
-    }
-
+    const replacements = [id_parsed];
     const [results, metadata] = await sequelize.query(TaskQuery.taskDetail, {
       replacements,
     });
-
     console.log(id);
 
     return h.response(results).code(200);
@@ -237,18 +231,28 @@ const updateTaskToCompleteHandler = async (request, h) => {
     id_parsed = parseInt(id);
     const replacements = [id_parsed];
 
-    const [result] = await sequelize.query(TaskQuery.updateTaskToComplete, {
+    let query = `select isCompleted from task where task_id = ?`;
+    const [result_isCompleted] = await sequelize.query(query, {
       replacements,
     });
 
-    if (result.affectedRows === 0) {
-      return h
-        .response({ status: "fail", message: "Task not found" })
-        .code(404);
+    let isCompleted = result_isCompleted[0].isCompleted;
+    let messages;
+    if (isCompleted == 1) {
+      const [result] = await sequelize.query(
+        TaskQuery.updateTaskToNotComplete,
+        {
+          replacements,
+        }
+      );
+      messages = "update to not complete success";
+    } else {
+      const [result] = await sequelize.query(TaskQuery.updateTaskToComplete, {
+        replacements,
+      });
+      messages = "update to complete success";
     }
-    return h
-      .response({ status: "success", message: "Task updated successfully" })
-      .code(200);
+    return h.response({ status: "success", message: messages }).code(200);
   } catch (error) {
     console.log(error);
     return h.response("Failed to update task").code(500);
