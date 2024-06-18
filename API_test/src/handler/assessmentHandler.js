@@ -77,10 +77,10 @@ const predictMajorHandler = async (request, h) => {
       E5,
       E7,
       E8,
-      C1,
       C2,
       C3,
       C5,
+      C6,
       C7,
       C8,
       TIPI1,
@@ -106,36 +106,6 @@ const predictMajorHandler = async (request, h) => {
       VCL14,
       VCL15,
     } = request.payload;
-
-    let query = `SELECT * from user_data where username = ?`;
-
-    const [results] = await sequelize.query(query, {
-      replacements: [username],
-    });
-
-    let queryGetValue = `select option_value from profileOption where option_text = ?;`;
-
-    const [result_education] = await sequelize.query(queryGetValue, {
-      replacements: [results[0].user_education],
-    });
-    const [result_gender] = await sequelize.query(queryGetValue, {
-      replacements: [results[0].user_gender],
-    });
-    const [result_engnat] = await sequelize.query(queryGetValue, {
-      replacements: [results[0].user_engNat],
-    });
-    const [result_religion] = await sequelize.query(queryGetValue, {
-      replacements: [results[0].user_religion],
-    });
-    const [result_voted] = await sequelize.query(queryGetValue, {
-      replacements: [results[0].user_voted],
-    });
-
-    let education = result_education[0].option_value;
-    let gender = result_gender[0].option_value;
-    let engnat = result_engnat[0].option_value;
-    let religion = result_religion[0].option_value;
-    let voted = result_voted[0].option_value;
 
     const data = {
       R1,
@@ -168,10 +138,10 @@ const predictMajorHandler = async (request, h) => {
       E5,
       E7,
       E8,
-      C1,
       C2,
       C3,
       C5,
+      C6,
       C7,
       C8,
       TIPI1,
@@ -196,20 +166,38 @@ const predictMajorHandler = async (request, h) => {
       VCL13,
       VCL14,
       VCL15,
-      education,
-      gender,
-      engnat,
-      religion,
-      voted,
     };
 
     const predictAPI = process.env.PREDICT_API_URL;
     const response = await axios.post(predictAPI, data);
+    const predictedMajor = response.data.data.prediction;
+    console.log(predictedMajor);
+    const replacements = [predictedMajor, username];
 
-    const predictedMajor = response.data.prediction[0];
-    const capitalizedMajor =
-      predictedMajor[0].toUpperCase() + predictedMajor.slice(1);
-    const replacements = [capitalizedMajor, username];
+    let query_checker = `select count(major_id) as checker from major 
+    join user_major on major_major_id = major_id
+    join user_data on user_id = user_user_id
+    where username = ? && major_name = ? `;
+
+    let query_update = `UPDATE user_major AS um
+    JOIN major AS m ON um.major_major_id = m.major_id
+    JOIN user_data AS ud ON um.user_user_id = ud.user_id
+    SET um.user_major_date = CURDATE()
+    WHERE ud.username = ? AND m.major_name = ?;`;
+
+    const [result_check] = await sequelize.query(query_checker, {
+      replacements: [username, predictedMajor],
+    });
+
+    if ((result_check[0].checker = 0)) {
+      await sequelize.query(AssessmentQuery.postResultQuery, {
+        replacements,
+      });
+    } else {
+      await sequelize.query(query_update, {
+        replacements: [username, predictedMajor],
+      });
+    }
 
     const [result] = await sequelize.query(
       AssessmentQuery.getAssessmentResultDataQuery,

@@ -22,13 +22,13 @@ const getOptionQuery = `
         where 
             c.category_name = ?`;
 
-const getAssessmentDataQuery = `	select m.major_name, um.user_major_date from user_major um
+const getAssessmentDataQuery = `	select m.major_id, m.major_name, um.user_major_date from user_major um
     join user_data u on u.user_id = um.user_user_id
     join major m on m.major_id = um.major_major_id
     WHERE u.username = ?
     ORDER BY um.user_major_date ASC`;
 
-const getAssessmentResultDataQuery = `select m.major_name, m.major_description from major m where m.major_name = ?`;
+const getAssessmentResultDataQuery = `select m.major_id, m.major_name, m.major_description from major m where m.major_name = ?`;
 
 const postResultQuery = `INSERT IGNORE INTO user_major (major_major_id, user_user_id, user_major_date)
     SELECT m.major_id, u.user_id, CURDATE() as user_major_date

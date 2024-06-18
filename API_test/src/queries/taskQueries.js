@@ -19,7 +19,7 @@ const uncompletedTaskList = `
         u.username = ? AND
         t.isCompleted = FALSE
       ORDER BY 
-        createdAt ASC
+        task_date ASC
 `;
 
 // Count of completed tasks
@@ -124,7 +124,7 @@ const completedTaskList = `
         u.username = ? AND
         t.isCompleted = TRUE
       ORDER BY 
-        createdAt ASC
+        task_date ASC
 `;
 
 const updateTaskToComplete = `

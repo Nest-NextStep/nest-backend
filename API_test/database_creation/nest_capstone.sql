@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 16, 2024 at 04:18 AM
+-- Generation Time: Jun 18, 2024 at 05:39 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -559,7 +559,7 @@ CREATE TABLE `task` (
 
 INSERT INTO `task` (`task_id`, `task_name`, `task_date`, `task_startTime`, `task_endTime`, `task_duration`, `task_focusTime`, `task_breakTime`, `task_priority`, `task_repeat`, `user_user_id`, `isCompleted`, `createdAt`) VALUES
 (1, 'Study for Exam', '2024-06-15', '10:00:00', '12:00:00', 60, 15, 15, 'High', 1, 1, 0, '2024-06-14 14:57:29'),
-(2, 'Prepare Presentation', '2024-06-16', '14:00:00', '16:00:00', 60, 15, 15, 'Medium', 1, 1, 1, '2024-06-14 15:00:44'),
+(2, 'Prepare Presentation', '2024-06-16', '14:00:00', '16:00:00', 60, 15, 15, 'Medium', 1, 1, 0, '2024-06-16 14:03:20'),
 (3, 'Study Advanced Algebra', '2024-06-02', '07:00:00', '08:00:00', 60, 20, 10, 'medium', 1, 1, 1, '2024-06-14 14:59:49');
 
 -- --------------------------------------------------------
@@ -571,7 +571,7 @@ INSERT INTO `task` (`task_id`, `task_name`, `task_date`, `task_startTime`, `task
 CREATE TABLE `university` (
   `university_id` int(11) NOT NULL,
   `university_name` varchar(100) NOT NULL,
-  `university_location` varchar(30) NOT NULL,
+  `university_location` varchar(50) NOT NULL,
   `university_acreditation` char(10) NOT NULL,
   `university_link` varchar(500) NOT NULL,
   `major_major_id` int(11) NOT NULL,
@@ -631,6 +631,7 @@ INSERT INTO `university` (`university_id`, `university_name`, `university_locati
 (46, 'Universitas Gadjah Mada', 'Kab. Sleman, Yogyakarta', 'UNGGUL', 'https://sejarah.fib.ugm.ac.id/program-sarjana/', 16, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-ugm.png'),
 (47, 'Universitas Indonesia', 'Depok, Jawa Barat', 'UNGGUL', 'https://fib.ui.ac.id/akademik/program-sarjana-s1/program-studi-sejarah/', 16, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-ui.png'),
 (48, 'Universitas Airlangga', 'Surabaya, Jawa Timur', 'UNGGUL', 'https://fib.unair.ac.id/ilmusejarah/en/home/', 16, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-unair.png'),
+(49, 'Universitas Negeri Medan', 'Kab. Deli Serdang, Sumatera Utara', 'A', 'https://www.unimed.ac.id/2022/06/30/bimbingan-konseling/', 17, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-unimed.png'),
 (50, 'Universitas Negeri Padang', 'Padang, Sumatera Barat', 'UNGGUL', 'https://fip.unp.ac.id/jurusan/12', 17, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-unp.png'),
 (51, 'Universitas Negeri Jakarta', 'Jakarta Timur, DKI Jakarta', 'UNGGUL', 'https://fip.unj.ac.id/?page_id=71', 17, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-unj.png'),
 (52, 'Universitas Diponegoro', 'Semarang, Jawa Tengah', 'UNGGUL', 'https://admbisnis.fisip.undip.ac.id/V1/', 18, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-undip.png'),
@@ -660,9 +661,9 @@ INSERT INTO `university` (`university_id`, `university_name`, `university_locati
 (76, 'Universitas Indonesia', 'Depok, Jawa Barat', 'UNGGUL', 'https://feb.ui.ac.id/manajemen/', 26, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-ui.png'),
 (77, 'Institut Teknologi Bandung', 'Bandung, Jawa Barat', 'UNGGUL', 'https://www.itb.ac.id/program-studi-sarjana-manajemen', 26, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-itb.png'),
 (78, 'Universitas Pendidikan Indonesia', 'Bandung, Jawa Barat', 'UNGGUL', 'https://kurikulum.upi.edu/struktur/prodi/L505', 26, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-upi.png'),
-(79, 'Universitas Indonesia', 'Depok, Jawa Barat', 'UNGGUL', 'https://feb.ui.ac.id/course/manajemen-sdm/', 27, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-ui.png'),
-(80, 'Institut Teknologi Bandung', 'Bandung, Jawa Barat', 'UNGGUL', '', 27, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-itb.png'),
-(81, 'Universitas Diponegoro', 'Semarang, Jawa Tengah', 'UNGGUL', 'https://fisip.undip.ac.id/id/manajemen-sumber-daya-manusia/', 27, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-undip.png'),
+(79, 'Universitas Indonesia', 'Depok, Jawa Barat', 'UNGGUL', 'https://vokasi.ui.ac.id/web/hubungan-masyarakat/', 27, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-ui.png'),
+(80, 'Universitas Gadjah Mada', 'Kab. Sleman, Yogyakarta', 'UNGGUL', 'https://sv.ugm.ac.id/unit-kerja/hubungan-masyarakat/', 27, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-ugm.png'),
+(81, 'Universitas Padjadjaran', 'Bandung, Jawa Barat', 'UNGGUL', 'https://www.unpad.ac.id/fakultas/ilmu-komunikasi/hubungan-masyarakat/', 27, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-unpad.png'),
 (82, 'Universitas Negeri Jakarta', 'Jakarta Timur, DKI Jakarta', 'UNGGUL', 'https://fbs.unj.ac.id/musik/', 28, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-unj.png'),
 (83, 'Universitas Negeri Semarang', 'Semarang, Jawa Tengah', 'UNGGUL', 'https://unnes.ac.id/pendidikam-seni-musik-s1/', 28, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-unnes.png'),
 (84, 'Universitas Negeri Malang', 'Malang, Jawa Timur', 'UNGGUL', 'http://sedesa.sastra.um.ac.id/s1-pendidikan-seni-tari-dan-musik/', 28, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-um.png'),
@@ -677,6 +678,7 @@ INSERT INTO `university` (`university_id`, `university_name`, `university_locati
 (93, 'Universitas Sebelas Maret', 'Surakarta, Jawa Tengah', 'UNGGUL', 'https://mipa.uns.ac.id/fisika/', 31, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-uns.png'),
 (94, 'Universitas Indonesia', 'Depok, Jawa Barat', 'UNGGUL', 'https://ir.fisip.ui.ac.id/', 32, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-ui.png'),
 (95, 'Universitas Diponegoro', 'Semarang, Jawa Tengah', 'UNGGUL', 'https://hi.fisip.undip.ac.id/v1/', 32, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-undip.png'),
+(96, 'Universitas Padjadjaran', 'Sekolah Tinggi Pariwisata Bandung', 'UNGGUL', 'https://fisip.unpad.ac.id/program/sarjana-hubungan-internasional/', 32, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-unpad.png'),
 (97, 'Universitas Pendidikan Indonesia', 'Bandung, Jawa Barat', 'UNGGUL', 'https://fpok.upi.edu/profil-fakultas/jurusan', 33, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-upi.png'),
 (98, 'Universitas Negeri Semarang', 'Semarang, Jawa Tengah', 'UNGGUL', 'https://unnes.ac.id/ilmu-keolahragaan-s1/', 33, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-unnes.png'),
 (99, 'Universitas Negeri Jakarta', 'Jakarta Timur, DKI Jakarta', 'UNGGUL', 'https://penmaba.unj.ac.id/fakultas-ilmu-olahraga/', 33, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-unj.png'),
@@ -686,6 +688,7 @@ INSERT INTO `university` (`university_id`, `university_name`, `university_locati
 (103, 'Universitas Indonesia', 'Depok, Jawa Barat', 'UNGGUL', 'https://www.fkm.ui.ac.id/', 35, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-ui.png'),
 (104, 'Universitas Sumatera Utara', 'Medan, Sumatera Utara', 'UNGGUL', 'https://fkm.usu.ac.id/', 35, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-usu.png'),
 (105, 'Universitas Diponegoro', 'Semarang, Jawa Tengah', 'UNGGUL', 'https://fkm.undip.ac.id/', 35, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-undip.png'),
+(106, 'Politeknik Pariwisata NHI Bandung', 'Sekolah Tinggi Pariwisata Bandung', 'UNGGUL', 'https://poltekpar-nhi.ac.id/', 36, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-politeknik-pariwisata-nhi.png'),
 (107, 'Universitas Gadjah Mada', 'Kab. Sleman, Yogyakarta', 'UNGGUL', 'https://pariwisata.fib.ugm.ac.id/', 36, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-ugm.png'),
 (108, 'Universitas Udayana', 'Kab. Badung, Bali', 'UNGGUL', 'https://www.unud.ac.id/in/fakultas11-Fakultas%20Pariwisata.html', 36, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-udayana.png'),
 (109, 'Universitas Indonesia', 'Depok, Jawa Barat', 'UNGGUL', 'https://fib.ui.ac.id/akademik/program-sarjana-s1/program-studi-filsafat/', 37, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-ui.png'),
@@ -721,9 +724,9 @@ INSERT INTO `university` (`university_id`, `university_name`, `university_locati
 (139, 'Universitas Gadjah Mada', 'Kab. Sleman, Yogyakarta', 'UNGGUL', 'https://geo.ugm.ac.id/', 47, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-ugm.png'),
 (140, 'Universitas Negeri Semarang', 'Semarang, Jawa Tengah', 'UNGGUL', 'https://unnes.ac.id/geografi-s1/', 47, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-unnes.png'),
 (141, 'Universitas Negeri Yogyakarta', 'Kab. Sleman, Yogyakarta', 'UNGGUL', 'https://pendidikan-geografi.fishipol.uny.ac.id/', 47, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-uny.png'),
-(142, 'Universitas Indonesia', 'Depok, Jawa Barat', 'UNGGUL', '', 48, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-ui.png'),
-(143, 'Universitas Airlangga', 'Surabaya, Jawa Timur', 'UNGGUL', 'https://fib.unair.ac.id/linguistik/10-2/', 48, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-unair.png'),
-(144, 'Universitas Padjadjaran', 'Bandung, Jawa Barat', 'UNGGUL', 'https://fib.unpad.ac.id/program-pendidikan/ilmu-linguistik/', 48, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-unpad.png'),
+(142, 'Universitas Gadjah Mada', 'Kab. Sleman, Yogyakarta', 'UNGGUL', 'https://fib.ugm.ac.id/akademik/program-sarjana/sastra-indonesia', 48, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-ugm.png'),
+(143, 'Universitas Diponegoro', 'Semarang, Jawa Tengah', 'UNGGUL', 'https://sastraindonesia.fib.undip.ac.id/', 48, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-undip.png'),
+(144, 'Universitas Negeri Yogyakarta', 'Kab. Sleman, Yogyakarta', 'UNGGUL', 'https://sasindo.fbs.uny.ac.id/', 48, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-uny.png'),
 (145, 'Universitas Pendidikan Indonesia', 'Bandung, Jawa Barat', 'UNGGUL', 'https://pgpaud.upi.edu/', 49, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-upi.png'),
 (146, 'Universitas Sriwijaya', 'Palembang, Sumatera Selatan', 'UNGGUL', 'https://unsri.ac.id/web-prodi/kurikulum/3b70c651-58bb-4730-bc94-8a610a358162/detail-kurikulum/4809a2d0-4340-4716-adbc-317a86fd4ce6', 49, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-unsri.png'),
 (147, 'Universitas Negeri Jakarta', 'Jakarta Timur, DKI Jakarta', 'UNGGUL', 'https://fip.unj.ac.id/?page_id=132', 49, 'https://storage.googleapis.com/nextstep-bucket/university-logo/logo-unj.png'),
@@ -775,6 +778,9 @@ CREATE TABLE `user_major` (
 
 INSERT INTO `user_major` (`user_user_id`, `major_major_id`, `user_major_date`) VALUES
 (1, 3, '2023-05-15'),
+(1, 5, '2024-06-18'),
+(1, 6, '2024-06-18'),
+(1, 13, '2024-06-18'),
 (1, 19, '2023-05-16'),
 (1, 48, '2024-06-15');
 
