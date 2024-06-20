@@ -69,7 +69,9 @@ To run this application locally, please carefully follow these steps :
    ```
    npm install
    ```
-5. Run the server
+4. Run XAMPP MySQL server
+5. Migrate SQL codes to MySQL Server by copying the file in database_creation folder
+6. Run the server
    ```
    npm run start:dev
    ```
